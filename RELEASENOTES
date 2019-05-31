@@ -1,0 +1,170 @@
+Changes for Release 2.0.1
+January 20, 2015
+------------------------------
+The main reason for this release is to capture the changes to the external
+check code that was based off the version 2.0 release.
+
+* New Features
+ * External check store populator code is now based on the version 2.0 release.
+
+* Bug Fixes
+ * When receiving an info query for a non-existent object the local data store
+   would throw an exception.
+ * Various collector code improvements to deal with authority queries
+
+Changes for Release 2.0
+August 28, 2014
+------------------------------
+
+* New Features
+  * A new program, collector/rest_call.py, replaces several others
+    for exercising the REST API and validating JSON responses.
+  * The datastore and collector implementations now use a python
+    logging package which is configured to syslog to /var/log/opsmon.log.
+  * There is some support for WiMAX monitoring.
+  * The schemas have several additions described below.
+
+* Bug Fixes
+  * A security vulnerability in local/rest_call_handler.py, part of the
+    local datastore implementation, is fixed.  Python's eval() was being
+    used on parts of URLs from external clients, enabling arbitrary
+    remote code execution.
+
+* Schema and REST changes
+  * The REST calls changed as follows:
+    * In the bulk data request (/data/?q={"filters"...), if the list
+      of object ids contains a "*", then data is returned for all
+      possible objects.
+    * The word "port" never appears as an object type in a REST call.
+      Use "interface" or "interfacevlan."
+
+  * The JSON schemas for the responses to REST calls changed as follows:
+    * There are two versions of each JSON schema and opsconfig.json.
+      One has a suffix .jwc (JSON With Comments) and contains //-style
+      comments describing the schema in more detail.  The other has
+      neither comments nor the .jwc suffix.  The uncommented version is
+      generated from the .jwc file and is used for validation, since a
+      pure JSON schema cannot contain such comments.
+    * In sliver.schema:
+      * The field creator_urn is renamed to creator because it might not
+	be a URN.
+      * The field resources is renamed to resource, which is now
+	required and can only contain one resource instead of a list.
+	resource has subfields resource_type, urn, and href.
+    * In aggregate.schema:
+      * New required fields: monitoring_version and
+	operational_status.
+      * New optional fields: populator_version, routable_ip_poolsize.
+      * In the list of resources, in addition to href and urn, there
+	is a new resource_type field indicating whether the resource
+	is a node or a link.
+    * In node.schema:
+      * New required field node_type.
+      * ops_monitoring:vm_server_type is renamed to virtualization_type.
+    * In interface.schema:
+      * This file was previouly called port.schema.
+      * New field addresses to hold the list of addresses for an
+	interface.  This replaces the address (singular) field.
+    * In interfacevlan.schema:
+      * This file was previouly called port-vlan.schema.
+      * The unused address field is removed.
+      * The field port is renamed to interface.
+
+  * The local datastore's database schema changed as follows:
+    * Many tables now have PRIMARY KEY, FOREIGN KEY, and UNIQUE
+      declarations.  Search for "constraints" in
+      config/opsconfig.json.jwc.  This should clarify how the tables
+      relate to each other.  You may have to reorder your table updates
+      to satisfy referential integrity.
+    * The ops_sliver table has new fields node_id and link_id
+      that need to be populated.
+    * The ops_sliver_resource table is gone.  Use the node_id or link_id 
+      fields in the ops_sliver table instead.
+    * The ops_aggregate table has new fields populator_version,
+      operational_status, and routable_ip_poolsize that need to
+      be populated.
+    * In the ops_node table:
+      * properties$vm_server_type is renamed to virtualization_type.
+      * New required field node_type.
+    * In the ops_interface table:
+      * Removed fields address_type and address_address.
+    * There is a new table ops_interface_addresses to hold the
+      addresses for an interface.
+    * ops_link table now has a layer column
+    * There is a new ops_link_relations to express parent/child relation between links.
+    * The ops_link_interfacevlan no longer has the urn and selfRef columns.
+    
+
+* Notes
+  * If your local datastore is listening on port 5001, we recommend
+    switching to port 4334 to avoid conflicting with iperf.
+
+
+Changes for Release 1.1_patch1
+June 4, 2014
+------------------------------
+
+* The main purpose of this patch is to fix ops-monitoring ticket 56.
+  This defect caused local datastores to return invalid JSON
+  responses.  In cases where an optional field did not have a value,
+  the defect caused a value of None to be returned, which fails JSON
+  validation. The fix is to omit the field entirely from the response
+  in this case.  The main files affected are config/opsconfig.json
+  and local/rest_call_handler.py, with related fixes to the collector
+  in collector/single_local_datastore_info_crawler.py .
+
+Other notable changes that are in this patch:
+
+* opsconfig.json has been updated in these ways:
+  1. contains a far more complete list of aggregates.
+  2. num_vms_allocated moved from the aggregate to the node.
+  3. vm_server_type was added to the node.
+
+  #2 and #3 change the database tables, so you'll need to
+  regenerate them.
+
+* Some locking was removed from local/rest_call_handler.py to
+  attempt to address problems with hanging queries.
+
+* The endpoints of a link were made optional in schema/link.schema.
+
+* The authority part of schema/user.schema was fixed to be like
+  that of slices.
+
+* Some work in progress on the external check datastore is included.
+
+
+Changes for Release 1.0  
+May 1, 2014
+-----------------------
+
+* SSL is used to enable local datastores to verify the identity of
+  collectors.  Collectors must present a valid tool certificate to
+  be allowed access.  See local/README for the required Apache2
+  configuration, collector/README for using tool certificates,
+  and config/README for configuring the whitelist of allowed
+  collectors.
+  
+* The database schemas are all read from config/opsconfig.json,
+  which is a dictionary containing this configuration.  See the
+  README at local/README point 6 for details of the schema.  The
+  only change to tables that existed prior to this release are the
+  measurement event tables.  The table names now are named 
+  "ops_<object_type>_<event_type>".  Before <object_type> did not
+  exist.
+
+* All selfRef and href entries into the database tables should be 
+  changed from http to https.
+
+* All $schema entries in the database for which json-schema to use
+  should point to:
+  http://www.gpolab.bbn.com/monitoring/schema/20140501/<obj_type>#
+  Notice the data change to 20140501 and that the base url starts
+  with gpolab instead of unis for all schemas.
+  
+
+Changes for Release snapshot-20140221 
+February 21, 2014
+-------------------------------------
+
+* Initial release of monitoring prototype.

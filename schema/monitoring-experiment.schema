@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140828/monitoring-experiment#",
+  "description": "experiment for monitoring purposes",
+  "name": "Monitoring-experiment",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "slice_urn": {
+      "description": "URN of the GENI slice to which this sliver belongs",
+      "type": "string",
+      "required": true
+    },
+    "slice_uuid": {
+      "description": "UUID of the GENI slice to which this sliver belongs",
+      "type": "string",
+      "required": false
+    },
+    "source_aggregate": {
+      "description": "GENI aggregate that is the source of this experiment",
+      "type": [
+        {
+          "urn": "string",
+          "$ref": "http://www.gpolab.bbn.com/monitoring/schema/20140828/aggregate#"
+        }
+      ],
+      "required": true
+    },
+    "destination_aggregate": {
+      "description": "GENI aggregate that is the destintation of this experiment",
+      "type": [
+        {
+          "urn": "string",
+          "$ref": "http://www.gpolab.bbn.com/monitoring/schema/20140828/aggregate#"
+        }
+      ],
+      "required": true
+    }
+  }
+}

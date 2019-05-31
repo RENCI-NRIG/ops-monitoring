@@ -1,0 +1,14 @@
+{
+  "$schema": "http://unis.incntre.iu.edu/schema/20120709/port#",
+  "selfRef": "https://datastore.instageni.gpolab.bbn.com/ports/instageni.gpolab.bbn.com_interface_pc1:eth1",
+  "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+interface+pc1:eth1",
+  "ts": 1391194147100678,
+  "id": "instageni.gpolab.bbn.com_interface_pc1:eth1",
+  "address": {
+    "type": "mac",
+    "address": "aa:aa:aa:aa:aa:ab"
+  },  
+  "ops_monitoring:role": "experimental",
+  "ops_monitoring:max_bps": 10000000,
+  "ops_monitoring:max_pps": 1000000
+}

@@ -1,0 +1,3 @@
+For GENI nodes (hosts and network devices), use:
+  "$schema": "http://unis.incntre.iu.edu/schema/20120709/port#"
+

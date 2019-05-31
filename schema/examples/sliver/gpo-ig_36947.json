@@ -1,0 +1,22 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140828/sliver#",
+  "id": "instageni.gpolab.bbn.com_sliver_26947",
+  "selfRef": "https://datastore.instageni.gpolab.bbn.com/info/sliver/instageni.gpolab.bbn.com_sliver_26947",
+  "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+sliver+26947",
+  "uuid": "30752b06-8ea8-11e3-8d30-000000000000",
+  "ts": 1391192685740849,
+  "aggregate": {
+    "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+authority+cm",
+    "href": "https://datastore.instageni.gpolab.bbn.com/info/aggregate/gpo-ig"
+  },
+  "slice_urn": "urn:publicid:IDN+ch.geni.net:gpo-infra+slice+tuptyexclusive",
+  "slice_uuid": "8c6b97fa-493b-400f-95ee-19accfaf4ae8",
+  "creator": "urn:publicid:IDN+ch.geni.net+user+tupty",
+  "created": 1391626683000000,
+  "expires": 1391708989000000,
+  "resource": {
+    "resource_type": "node",
+    "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+node+pc1",
+    "href": "urn:publicid:IDN+instageni.gpolab.bbn.com+node+pc1"
+  }
+}

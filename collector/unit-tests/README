@@ -1,0 +1,18 @@
+This README gives an overview of the programs in this directory.
+Follow the ops-monitoring/collector/README to install and configure
+packages to run these programs.
+
+1. collector_table_reset.py
+
+  This resets/initializes the table structure at the collector's
+  database.  The program reads in opsconfig.json and creates tables in
+  the "info" key with the db_schema present there in a straightforward
+  manner.  
+
+  The "events" key creates a tables named after the event
+  type: ops_<object-type>_<event-name> where object-type is a "node"
+  or "interface" and event-name is "mem_used_kb".  The columns of the
+  event tables are all aggregate_id (really this is datastore_id), id
+  for object id, ts for timestamp, and v which is of whatever type
+  specified in the subdictionary of that event (as shown in the
+  particular event sub-dictionary).

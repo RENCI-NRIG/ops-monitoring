@@ -1,0 +1,336 @@
+Reference Datastore README
+
+Table of Contents:
+
+1. Aptitude packages
+2. Database Configuration
+3. PSutil Install and Configuration (optional)
+4. Installation of ops-monitoring software
+5. Configuration of ops-monitoring software
+6. Syslog configuration
+7. Apache, WSGI, and Flask Configuration
+8. Datastore database cleanup and initialization
+9. Start the webserver
+10. Invoke some example queries
+
+
+1. Aptitude packages
+
+   * IF using PostgreSQL
+      (1) sudo apt-get install postgresql python-psycopg2
+   * IF using MySQL
+      (1) sudo apt-get install mysql-server mysql-client python-mysqldb
+
+    (2) sudo apt-get install python-requests
+    (3) sudo apt-get install curl
+
+    For the Python-Flask webserver:
+    (4) sudo apt-get install python-flask
+
+    For the Apache webserver with WSGI:
+    (5) sudo apt-get install apache2 libapache2-mod-wsgi
+
+2a. Database configuration when upgrading an existing ops-monitoring installation
+
+   IF you wish to conserve your database settings from a previous version
+   installation, continue to step 3.
+
+   IF you wish to remove the existing existing database configuration and
+   recreate them from scratch, use the following steps:
+     For PostgreSQL database:
+         (1) sudo -u postgres dropdb local
+         (2) sudo -u postgres dropuser <OLD_LOCAL_OPERATOR_NAME>
+
+         Where <OLD_LOCAL_OPERATOR_NAME> is the value of username in the
+         [postgres] section of
+         /usr/local/ops-monitoring/config/local_datastore_operator.conf
+
+         Continue on with step 2b.
+
+     For MySQL database:
+        (1) echo "DROP DATABASE local" | mysql -u root -p
+
+        Continue on with step 2c.
+
+2b. PostgreSQL Configuration
+
+   We use <LOCAL_OPERATOR_NAME>=localuser, but any name you like
+   should work.
+
+    Omit (1) if you already have a postgres user
+    (1) sudo -u postgres psql -c '\password postgres' postgres
+    (2) sudo -u postgres createuser --no-createdb --no-createrole \
+          --no-superuser <LOCAL_OPERATOR_NAME>
+    (3) sudo -u postgres psql -c '\password <LOCAL_OPERATOR_NAME>' postgres
+    (4) sudo -u postgres createdb --owner=<LOCAL_OPERATOR_NAME> local
+
+2c. MySQL Configuration
+
+    (1) echo "CREATE DATABASE local" | mysql -u root -p
+    (2) echo "GRANT ALL ON local.* TO <LOCAL_OPERATOR_NAME>@localhost IDENTIFIED BY '<LOCAL_PASSWORD>'" | mysql -u root -p
+
+
+3. PSutil Install and Configuration (optional)
+
+   This is only necessary if you want to use psutil to insert some
+   realistic-looking sample data into your datastore for testing.
+   See step 6 for more about this decision.  If you just want an empty
+   datastore into which to insert your own data, psutil isn't required.
+
+    (1) sudo apt-get install python-dev python-pip 
+    (2) sudo pip install psutil 
+    (3) If psutil was installed through apt-get install 
+        python-psutil, upgrade it through pip
+        sudo pip install psutil --upgrade
+
+
+4. Installation of ops-monitoring software
+
+   IF upgrading the ops-monitoring software, you can remove the existing
+   software located in /usr/local/ops-monitoring (for version prior to 1.1)
+   or located in /usr/local/ops-monitoring-<oldversion>.
+   IF you wish to conserve your database settings, set aside the configuration
+   file /usr/local/ops-monitoring/config/local_datastore_operator.conf
+
+   This puts the software in /usr/local/ops-monitoring-v2.0.  You can put it
+   elsewhere, but may need to change other configuration down the line
+   to point to the correct paths.
+
+    (1) cd /usr/local
+    (2) sudo tar xvzf /path/to/ops-monitoring.v2.0.tar.gz
+    (3) Ensure that ownership of the ops-monitoring/ directory is root:root
+        sudo chown -R root /usr/local/ops-monitoring-v2.0
+        sudo chgrp -R root /usr/local/ops-monitoring-v2.0
+    (4) Create a link to /usr/local/ops-monitoring-v2.0:
+        sudo ln -s /usr/local/ops-monitoring-v2.0 /usr/local/ops-monitoring
+
+
+5. Configuration of ops-monitoring software
+
+    (1) cd /usr/local
+    (2) sudo $EDITOR ops-monitoring/config/local_datastore_operator.conf
+        IF using PostgreSQL modify the [postgres] section or
+        IF using MySQL modify the [mysql] section:
+        * set username: <LOCAL_OPERATOR_NAME>
+        * set password: <password for <LOCAL_OPERATOR_NAME> you set above>
+        IF you are using MySQL:
+        * set dbtype: mysql in the [main] section
+        IF you are using PostgreSQL:
+        * set dbtype: postgres in the [main] section
+
+6. Syslog configuration
+
+    The ops-monitoring software now uses the syslog infrastructure to write to 
+    a log file. The ops-monitoring logging configuration is located in 
+    /usr/local/ops-monitoring/config/logging.conf.
+    By default it uses the local6 facility of syslog, hence the syslog 
+    configuration needs to be set up to handle the local6 events. If your 
+    system is already set up to use the local6 syslog facility for some other
+    purpose, modify the ops-monitoring logging configuration and modify the 
+    line containing handlers.SysLogHandler.LOG_LOCAL6 to reflect the syslog
+    facility you intend to use.
+    To configure the local6 facility of syslog, you can create the file
+    /etc/rsyslog.d/opsmon.conf and have it contain the following line:
+        local6.*                          -/var/log/opsmon.log
+
+7. Apache, WSGI, and Flask Configuration
+
+   The reference configuration customizes apache to make the reference
+   datastore available via flask and to enable SSL encryption.  These
+   instructions assume a stock Ubuntu Apache2 install; modify as necessary
+   to suit your local installation.
+   
+    (1) Enable the SSL module 
+        (a) sudo a2enmod ssl
+        (b) sudo a2dissite default
+            If you need the default site (port 80) for other content that you
+            need this web server to provide, you can skip (b).
+
+    (2) Fetch the GENI clearinghouse CA root certificate here:
+        http://groups.geni.net/geni/raw-attachment/wiki/GeniTrustAnchors/ch.geni.net-ca.pem
+        and copy it to /etc/ssl/certs.
+
+    (3) Apply for a tool certificate as described here:
+    http://groups.geni.net/geni/wiki/OperationalMonitoring/DatastorePolling#Security
+    You only need to do this once.
+
+    (4) In /etc/apache2/sites-available/default-ssl, make sure the following SSL
+        settings are in place.  Some of these are commented out by default,
+        so be sure to remove the initial "#".
+
+        SSLEngine on
+        SSLCACertificateFile /etc/ssl/certs/ch.geni.net-ca.pem
+        SSLVerifyClient require
+        SSLVerifyDepth  3
+        SSLOptions +ExportCertData
+
+
+    (5) Add text to an appropriate VirtualHost directive in your apache
+        configuration.  If you followed the SSL instructions above,
+        put this inside the <VirtualHost _default_:443> block of
+        /etc/apache2/sites-available/default-ssl, right below the SSL
+        settings and above the ending </VirtualHost>.
+        If you want the pages served at a root other than /, modify the
+        WSGIScriptAlias directive.
+
+        WSGIDaemonProcess localstore threads=5
+        WSGIScriptAlias / /usr/local/ops-monitoring/local/wsgi/localstore.wsgi
+
+        <Directory /usr/local/ops-monitoring/local/wsgi>
+            WSGIProcessGroup localstore
+            WSGIApplicationGroup %{GLOBAL}
+            Order deny,allow
+            Allow from all
+        </Directory>
+ 
+    (6) Enable the default SSL site:
+      sudo a2ensite default-ssl
+
+     This creates a link default-ssl file:
+       /etc/apache2/sites-enabled/default-ssl     to link to
+           /etc/apache2/sites-available/default-ssl 
+
+
+    (7) In order to see WSGI errors if any occur, modify that same
+        VirtualHost block and set:
+  LogLevel info
+
+    (8) Make sure you haven't introduced any syntax errors in default-ssl:
+        sudo apache2ctl configtest
+
+    (9) Start or restart Apache:
+        sudo service apache2 [start|restart]
+
+    (10) Once you have your tool certification from step (3), verify that
+        you can connect to Apache:
+
+    curl -k --cert ~/your-tool-cert.pem  https://your-apache-host/info/opsconfig/geni-prod
+    
+    In this curl call, the private key is concatenated to the
+    certificate. It can also by passing the --key /path/to/key.
+
+    After step 8. (below) the database tables will be populated and
+    will answer other curl calls.
+
+    *IMPORTANT NOTE* 
+    The curl that ships with MacOS X does not seem to work.  The curl
+    from MacPorts is known to work. Alternatively, the version of curl 
+    that can be acquired with aptitude works fine too.
+
+
+8. Datastore database cleanup and initialization
+
+   Populate your database either with the schema tables only, or with
+   the tables and some sample data if you want to see the localstore
+   work before adding your own data.
+
+    (1) cd /usr/local/ops-monitoring/local/unit-tests
+    (2) IF you want the tables only, run:
+          python ./local_table_reset.py
+    (3) OR IF you want tables and data, run:
+          python ./local_restart_node_interface_stats.py
+        This populates the tables with simulated configuration
+        information.  It then runs a series of inserts for putting node
+        and interface data that take a few seconds to complete.
+    (4) Open PostgreSQL to look at the data and tables
+        (a) psql -U <LOCAL_OPERATOR_NAME> -h localhost --dbname=local
+        (c) \dt
+        (d) select * from ops_aggregate;
+    
+    For operators of a local datastore (populating with real data),
+    below is a discription for which tables to populate for what
+    purpose.
+
+    Table names are prefixed with "ops_", so the table about an
+    aggregate is called "ops_aggregate".  All tables share the same
+    "ops_" namespace. 
+
+    The database schema for each table can be found in
+    ops-monitoring/config/opsconfig.json.  Tables supporing
+    information queries about objects (i.e., ops_node about nodes)
+    have a schema that can be found in the opsconfig.json dictionary
+    in the info array.  The info array contains a list of all tables
+    supporting information queries.  Each element of the array
+    contains a sub-dictionary with keys of name and db_schema.  The
+    db_schema value contains an array listing the column names and
+    column schema.  These are written in PostreSQL format, but upon
+    reading the schema the TableManager class can translate to MySQL
+    syntax.  All info tables have the following components in common:
+
+    - $schema : The json-schema file used for checking if the response
+       is valid.  An example value is: 
+       http://www.gpolab.bbn.com/monitoring/schema/20140828/aggregate#
+
+    - id : The ID of the object that is unique to this particular 
+       datastore.  It is preferred that this is a globally unique
+       id to the system. For example, aggregate ID rci-eg (for RENCI
+       ExoGENI) will not be used for other aggregate IDs.
+
+    - selfRef : The reference to the page to get information about
+       this object.
+
+    - urn : The urn of this object
+
+    - ts : The last time this row in the database was managed.  This
+       is the number of microseconds since the last epoch.  In Python,
+       this is time.time*1000000
+
+    Other important notable values are the following:
+     
+    - measRef : This is the base url for reference to the datastore
+       measurement queries
+
+    - properties$<property> : This is for information about a
+       particular property of the object.
+
+
+    Tables relating objects to one another are named with
+    objecttype with relatedobjecttype becoming: 
+    ops_objectype_relatedobjecttype
+    For example, information about a nodes interfaces are in table
+    "ops_node_interface".
+
+    The schema in the related object tables are all of form:
+    column1 is 'id' which is the relatedobjecttype object's id
+    column2 is '<objecttype>_id' where objecttype will vary.
+    column3 is 'urn' which is the relatedobjecttype object's urn
+    column4 is 'selfRef' which is the relatedobjecttype object's 
+    reference in this datastore.
+
+    Continuing the "ops_node_interface" example, a row would be:
+    ('interface_id', 'node_id', 'inteface_urn', 'interface_href').
+
+    Tables containing measurement event data are prefixed with the
+    object type, so the table for the event type "cpu_util" on node
+    objects is in table "ops_node_cpu_util". These tables all have 
+    a similar schema: ('id', 'ts', 'v')
+
+
+
+9. Start the webserver
+
+   Start apache:
+    (1) sudo service apache2 restart
+
+   OR start flask:
+    (2) cd /usr/local/ops-monitoring/local
+    (3) python ./web_server.py
+
+
+10. Invoke some example queries using curl as noted in step 7.  This
+ assumes that your certificate has a private key appended to it.  If
+ not pass the --key /path/to/key with this command.  These specific
+ queries (about gpo-ig as an aggregate and
+ instageni.gpolab.bbn.com_node_pc1 as a node) are enabled by running
+ the default test rig in step 6.3. replace "your-apache-host" with the
+ FQDN of your webserver in each example.
+
+ curl -k --cert ~/your-tool-cert.pem  https://your-apache-host/info/aggregate/gpo-ig
+
+ curl -k --cert ~/your-tool-cert.pem  https://your-apache-host/info/node/instageni.gpolab.bbn.com_interface_pc1
+
+ curl -k --cert ~/your-tool-cert.pem  https://your-apache-host/info/interface/instageni.gpolab.bbn.com_interface_pc1:eth1
+
+ curl -k --cert ~/your-tool-cert.pem  'https://your-apache-host/data/?q={"filters":{"eventType":["ops_monitoring:rx_bps","ops_monitoring:tx_bps"],"ts":{"gte":1,"lt":1000000000000000000000000},"obj":{"type":"interface","id":["instageni.gpolab.bbn.com_interface_pc1:eth1"]}}}'
+
+ curl -k --cert ~/your-tool-cert.pem 'https://your-apache-host/data/?={"filters":{"eventType":["ops_monitoring:mem_used_kb","ops_monitoring:cpu_util","ops_monitoring:disk_part_max_used"],"ts":{"gte":1,"lt":1000000000000000000000000},"obj":{"type":"node","id":["instageni.gpolab.bbn.com_node_pc1"]}}}'

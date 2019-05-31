@@ -1,0 +1,88 @@
+// Local datastores send JSON data conforming to this schema in response
+// to this REST call:
+//    https://<datastore-host>/info/link/<link object id>
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140828/link#",
+  "description": "link (circuit) with extensions for GENI monitoring use",
+  "name": "link",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "layer": {
+      "description": "layer this link exists at",
+      // If omitted, assume the common case, layer 2
+      // XXX I wanted to make this an enum, but I'm not sure what other
+      // values make sense besides "layer2"
+      "type": "string",
+      "required": false
+    },
+    "endpoints": {
+      "required": true,
+      "type": "array",
+      // Links can have 2 or more endpoints.  A multipoint "link" is
+      // basically a LAN; any enpoint is directly reachable from any other.
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "urn": {
+            "type":"string",
+            "required": true
+          },
+          "href": {
+            "type":"string",
+            "required": true
+          }
+        }
+      }
+    },
+    "parent": {
+       "description": "upper-layer link that this link is part of",
+       // This is optional!
+       // XXX Though urn/href can point to any object, we really only
+       // have endpoint objects defined for layer2, namely, interfacevlan.
+       // To fully support other link layers, it seems that we need to
+       // define endpoint objects that are appropriate for those layers.
+       // A physical layer optical endpoint isn't likely to have a vlan
+       // associated with it.
+       "required": false,
+       "additionalProperties": false,
+       "properties": {
+         "urn": {
+           "type":"string",
+           "required": true
+         },
+         "href": {
+           "type":"string",
+           "required": true
+         }
+       }
+    },
+    "children": {
+      "required": false,
+      "type": "array",
+      // Links can have children
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "urn": {
+            "type":"string",
+            "required": true
+          },
+          "href": {
+            "type":"string",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}
+

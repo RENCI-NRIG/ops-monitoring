@@ -1,0 +1,23 @@
+[main]
+<% if database_type == 'mysql' -%>
+dbtype: mysql
+<% else -%>
+dbtype: postgres
+<% end -%>
+configstoreurl: <%= config_store_url %>
+
+[postgres]
+database: <%= database_name %>
+username: localstore
+password: <%= postgres_localstore_password %>
+host: localhost
+port: 5432
+poolsize: 10
+
+[mysql]
+database: <%= database_name %>
+username: localstore
+password: <%= mysql_localstore_password %>
+host: localhost
+port: 3306
+poolsize: 10

@@ -1,0 +1,10 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140828/interface#",
+  "selfRef": "https://datastore.instageni.gpolab.bbn.com/info/interface/instageni.gpolab.bbn.com_interface_pc1:eth1",
+  "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+interface+pc1:eth1",
+  "ts": 1391194147100678,
+  "id": "instageni.gpolab.bbn.com_interface_pc1:eth1",
+  "ops_monitoring:role": "experimental",
+  "ops_monitoring:max_bps": 10000000,
+  "ops_monitoring:max_pps": 1000000
+}

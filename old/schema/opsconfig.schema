@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-03/hyper-schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140501/opsconfig#",
+  "description": "Operational monitoring data configuration",
+  "name": "opsconfig",
+  "type": "object",
+  "additionalProperties": true,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/domain#"
+  },
+  "properties": {
+    "aggregatestores": {
+      "description": "GENI aggregates known to support operational monitoring",
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+	"properties": {
+	   "urn": {"type": "string"},
+	   "amtype": {"type": "string"},
+	   "href": {"type": "string"}
+        },
+	"required": ["urn","amtype","href"]
+      }
+    },
+    "externalcheckstores": {
+      "description": "References for GENI externela check datastores",
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+	"properties": {
+	   "href": {"type": "string"}
+        },
+	"required": ["href"]
+      }
+    },
+    "authorities": {
+      "description": "GENI authorities known to support operational monitoring",
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+	"properties": {
+	   "urn": {"type": "string"},
+	   "href": {"type": "string"}
+        },
+	"required": ["urn","href"]
+      }
+    },
+   "info": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+	"properties": {
+	   "name": {"type": "string"},
+	   "db_schema":  {"type": "array"}
+	   },
+	   "required": ["name","db_schema"]
+       }
+    },
+    "events": {
+      "type": "object",
+      "properties": {
+        "node": {
+	  "type": "array",
+	  "required": true,
+	  "items": {
+	    "type": "object",
+	    "properties": {
+	        "name": {"type": "string"},
+	        "id": {"type":"string"},
+	        "ts": {"type":"string"},
+	        "v" : {"type":"string"},
+	        "units": {"type":"string"}
+	      },
+	      "required": ["name","id","ts","v","units"]
+	    }
+	 },
+         "aggregate": {
+	  "type": "array",
+	  "required": true,
+	  "items": {
+	    "type": "object",
+	    "properties": {
+	        "name": {"type": "string"},
+	        "id": {"type":"string"},
+	        "ts": {"type":"string"},
+	        "v" : {"type":"string"},
+	        "units": {"type":"string"}
+	      },
+	      "required": ["name","id","ts","v","units"]
+           }
+        },
+         "experiment": {
+	  "type": "array",
+	  "required": true,
+	  "items": {
+	    "type": "object",
+	    "properties": {
+	        "name": {"type": "string"},
+	        "id": {"type":"string"},
+	        "ts": {"type":"string"},
+	        "v" : {"type":"string"},
+	        "units": {"type":"string"}
+	      },
+	      "required": ["name","id","ts","v","units"]
+           }
+        },
+        "interfacevlan": {
+	  "type": "array",
+	  "required": true,
+	  "items": {
+	    "type": "object",
+	    "properties": {
+	        "name": {"type": "string"},
+	        "id": {"type":"string"},
+	        "ts": {"type":"string"},
+	        "v" : {"type":"string"},
+	        "units": {"type":"string"}
+	      },
+	      "required": ["name","id","ts","v","units"]
+           }
+        }
+      }
+    }
+  }
+}
+

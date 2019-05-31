@@ -1,0 +1,43 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140828/link#",
+  "id": "datastore.grnoc.iu.edu_link_001",
+  "ts": 1391192705275101,
+  "selfRef": "https://datastore.grnoc.iu.edu/info/link/salt_port_1750",
+  "urn": "urn:publicid:IDN+datastore.grnoc.iu.edu+salt_port_1750",
+  "endpoints": [
+    { 
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+interface+sdn-sw.salt.net.internet2.edu_100GigabitEthernet3_2_1750",
+      "href": "https://datastore.grnoc.iu.edu/info/interfacevlan/sdn-sw.salt.net.internet2.edu_100GigabitEthernet3_2_1750"
+    },
+    { 
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+interface+sdn-sw.port.net.internet2.edu_100GigabitEthernet3_2_1750",
+      "href": "https://datastore.grnoc.iu.edu/info/interfacevlan/sdn-sw.port.net.internet2.edu_100GigabitEthernet3_2_1750"    
+    }
+  ],
+  "children": [
+    { 
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+link+datastore.grnoc.iu.edu_link_002",
+      "href": "https://datastore.grnoc.iu.edu/info/link/datastore.grnoc.iu.edu_link_002"
+    },
+    {
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+link+datastore.grnoc.iu.edu_link_003",
+      "href": "https://datastore.grnoc.iu.edu/info/link/datastore.grnoc.iu.edu_link_003"
+    },
+    {
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+link+datastore.grnoc.iu.edu_link_004",
+      "href": "https://datastore.grnoc.iu.edu/info/link/datastore.grnoc.iu.edu_link_004"
+    },
+    {
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+link+datastore.grnoc.iu.edu_link_005",
+      "href": "https://datastore.grnoc.iu.edu/info/link/datastore.grnoc.iu.edu_link_005"
+    },
+    { 
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+link+datastore.grnoc.iu.edu_link_006",
+      "href": "https://datastore.grnoc.iu.edu/info/link/datastore.grnoc.iu.edu_link_006"
+    },
+    { 
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+link+datastore.grnoc.iu.edu_link_007",
+      "href": "https://datastore.grnoc.iu.edu/info/link/datastore.grnoc.iu.edu_link_007"
+    }
+  ]
+}

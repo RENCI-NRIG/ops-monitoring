@@ -1,0 +1,214 @@
+Reference Collector README
+
+Table of Contents:
+
+1. Aptitude packages
+2. Database Configuration
+3. Installation of ops-monitoring software
+4. Configuration of ops-monitoring software
+5. Syslog configuration
+6. Configuring the collector to point to local datastore(s)
+7. Collector programs:
+8. Query Library
+
+
+1. Packages to install
+
+   * IF using PostgreSQL
+      (1) sudo apt-get install postgresql python-psycopg2
+   * IF using MySQL
+      (1) sudo apt-get install mysql-server mysql-client python-mysqldb
+
+    (2) Install python packages.
+        (a) sudo apt-get install python-dev python-pip 
+        (b) sudo pip install requests
+        (c) If requests was installed through apt-get install python-requests,
+            upgrade it through pip:
+            sudo pip install requests --upgrade
+        (d) sudo pip install validictory
+
+2a. Database configuration when upgrading an existing ops-monitoring installation
+
+   IF you wish to conserve your database settings from a previous version
+   installation, continue to step 3.
+
+   IF you wish to remove the existing existing database configuration and
+   recreate them from scratch, use the following steps:
+     For PostgreSQL database:
+         (1) sudo -u postgres dropdb collector
+         (2) sudo -u postgres dropuser <OLD_COLLECTOR_OPERATOR_NAME>
+
+         Where <OLD_COLLECTOR_OPERATOR_NAME> is the value of username in the
+         [postgres] section of
+         /usr/local/ops-monitoring/config/collector_operator.conf
+
+         Continue on with step 2b.
+
+     For MySQL database:
+        (1) echo "DROP DATABASE collector" | mysql -u root -p
+
+        Continue on with step 2c.
+
+2b. PostgreSQL Configuration
+
+   We use <COLLECTOR_OPERATOR_NAME>=agguser, but any name you like
+   should work.
+
+    Omit (1) if you already have a postgres user
+    (1) sudo -u postgres psql -c '\password postgres' postgres
+    (2) sudo -u postgres createuser --no-createdb --no-createrole \
+          --no-superuser <COLLECTOR_OPERATOR_NAME>
+    (3) sudo -u postgres psql -c '\password <COLLECTOR_OPERATOR_NAME>' postgres
+    (4) sudo -u postgres createdb --owner=<COLLECTOR_OPERATOR_NAME> collector
+
+2c. MySQL Configuration
+
+    (1) echo "CREATE DATABASE collector" | mysql -u root -p
+    (2) echo "GRANT ALL ON collector.* TO <COLLECTOR_OPERATOR_NAME>@localhost IDENTIFIED BY '<COLLECTOR_PASSWORD>'" | mysql -u root -p
+
+3. Installation of ops-monitoring software
+
+   IF upgrading the ops-monitoring software, you can remove the existing
+   software located in /usr/local/ops-monitoring (for version prior to 1.1)
+   or located in /usr/local/ops-monitoring-<oldversion>.
+   IF you wish to conserve your database settings, set aside the configuration
+   file /usr/local/ops-monitoring/config/local_datastore_operator.conf
+
+   This puts the software in /usr/local/ops-monitoring-v2.0.  You can put it
+   elsewhere, but may need to change other configuration down the line
+   to point to the correct paths.
+
+    (1) cd /usr/local
+    (2) sudo tar xvzf /path/to/ops-monitoring.v2.0.tar.gz
+    (3) Ensure that ownership of the ops-monitoring/ directory is root:root
+        sudo chown -R root /usr/local/ops-monitoring-v2.0
+        sudo chgrp -R root /usr/local/ops-monitoring-v2.0
+    (4) Create a link to /usr/local/ops-monitoring-v2.0:
+        sudo ln -s /usr/local/ops-monitoring-v2.0 /usr/local/ops-monitoring
+
+4. Configuration of ops-monitoring software
+
+    (1) cd /usr/local
+    (2) sudo $EDITOR ops-monitoring/config/collector_operator.conf
+        IF using PostgreSQL modify the [postgres] section or
+        IF using MySQL modify the [mysql] section:
+        * set username: <COLLECTOR_OPERATOR_NAME>
+        * set password: <password for <COLLECTOR_OPERATOR_NAME> you set above>
+        IF you are using MySQL:
+        * set dbtype: mysql in the [main] section
+        IF you are using PostgreSQL:
+        * set dbtype: postgres in the [main] section
+
+5. Syslog configuration
+
+    The ops-monitoring software now uses the syslog infrastructure to write to 
+    a log file. The ops-monitoring logging configuration is located in 
+    /usr/local/ops-monitoring/config/logging.conf.
+    By default it uses the local6 facility of syslog, hence the syslog 
+    configuration needs to be set up to handle the local6 events. If your 
+    system is already set up to use the local6 syslog facility for some other
+    purpose, modify the ops-monitoring logging configuration and modify the 
+    line containing handlers.SysLogHandler.LOG_LOCAL6 to reflect the syslog
+    facility you intend to use.
+    To configure the local6 facility of syslog, you can create the file
+    /etc/rsyslog.d/opsmon.conf and have it contain the following line:
+        local6.*                          -/var/log/opsmon.log
+
+6. Configuring the collector to point to local datastore(s)
+
+    Attempt to reach the opsconfigdatastore config datastore with rest_call.py:
+
+    cd collector
+    ./rest_call.py -c /path/to/collector/certificate https://opsconfigdatastore.gpolab.bbn.com/info/opsconfig/geni-prod
+
+    The output of this config store will list the URLs of the aggregate and
+    external check datastores.
+
+
+7. Collector programs:
+
+   The datastores_dict item in 'config/collector_operator.conf' is
+   the collection of local datastores to be queried.  Use these to
+   form arguments in the execution of the collector programs.
+
+   (1) Apply for a tool certificate as described here:
+   http://groups.geni.net/geni/wiki/OperationalMonitoring/DatastorePolling#Security
+   You only need to do this once.
+
+   (2) single_local_datastore_info_crawler.py performs information
+   fetching. It puts data in the collector database.  It needs to be
+   called with four arguments specifying a certificate, a base URL, 
+   either an aggregate id or an external check id and the list of object
+   types to retrieve.
+
+     -c or --certpath= <pathname> provides the path to your tool certificate
+     -b or --baseurl= <local-store-info-base-url> 
+        This usually starts with "https://" and the convention is to end with "/info"
+     -a or --aggregateid= <aggregate_id> 
+        This is the aggregate ID at the base URL (value of -b) data store (i.e., gpo-ig)
+     -e or --extckid= <external_check_id> 
+        This is the external check store ID at the base URL (value of -b) data store (i.e., gpo)
+     -o or --object-types= <objecttypes-of-interest> 
+        This is a list of letters of object types to get info on.
+        If querying information on an aggregate store:
+         - n: for node
+         - i: for interface
+         - s: for sliver
+         - l: for link
+         - v: for vlan
+        If querying information on an external check store:
+         - x: for experiments
+         - e: for external checks
+        So argument -o nislv will get information on all object types for an aggregate.
+     -d or --debug will print what changes would be made to the collector database
+        to the screen and does not modify the database
+     -h or --help prints the usage information.
+
+
+   (3) single_local_datastore_object_type_fetcher.py does a single fetch
+   of timeseries data. It needs to be called with three arguments:
+
+     -c or --certpath <pathname> provides the path to your tool certificate
+     -a or --aggregateid of the aggregate in the ops_aggregate table
+     -o or --object-type of object to get (note singularity). Valid object 
+        types are (only one is passed, unlike the info_crawler above):
+        n: for node
+        i: for interface
+        v: for vlan
+        So argument -o n will get ts data for all node events and all nodes
+        at the datastore
+     -d or --debug will print what would be added to the collector database
+        to the screen and does not add anything to the database
+     -h or --help prints the usage() function, repeat of this info
+
+   (4) Running these programs as cron jobs.
+
+    Go into crontab:
+
+    crontab -e
+
+    Add the jobs you wish to run; examples are below.  In the first
+    example, the info crawler is run once per day at 11:30pm.  It
+    fetches objects of type n and i (-o ni).  Substitute the
+    aggregate_id and url of the datastore you wish to aggregate data
+    from.
+
+    In the last two examples, the data fetchers nodes (-o n) and
+    interfaces (-o i) runs every 5 minutes.  Substitute the
+    aggregate_id the same as for the info crawler. Save and exit
+    crontab.
+
+    30 23 * * * (cd /usr/local/ops-monitoring/collector; python single_local_datastore_info_crawler.py -c /path/to/cert/collector-xyz.pem -b http://opsconfigdatastore.gpolab.bbn.com/info/ -a gpo-ig -o ni)
+
+    */5 * * * * (cd /usr/local/ops-monitoring/collector; python single_local_datastore_object_type_fetcher.py -c /path/to/cert/collector-xyz.pem -a gpo-ig -o n)
+
+    */5 * * * * (cd /usr/local/ops-monitoring/collector; python single_local_datastore_object_type_fetcher.py -c /path/to/cert/collector-xyz.pem -a gpo-ig -o i)
+
+8. Query Library
+
+   The query library is used by services that sit on top of the collector.
+   The query library is currently contained in the collector module under
+   the file psql_queries.py.  This file should be installed under 
+   /usr/local/lib/ at this time.
+   To copy the library, execute the following command:
+     sudo cp collector/psql_queries.py /usr/local/lib/psql_queries.py

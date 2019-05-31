@@ -1,0 +1,82 @@
+This documentation is for how to use the testing infrastructure.
+
+Vagrant and Puppet is used for fast VM deployment/configuration.  The
+goal of this configuration is to make it easy to stand up a test
+version of new code, so we can do system-level regression tests
+without a lot of effort or error.
+
+In the monitoring architecture, there is the collector and the local
+datastore. Both can be deployed to VMs by Virtualbox, Vagrant, and
+Puppet.  
+
+1. The test/vagrant directory structure:
+
+ The directory structure down from ops-monitoring/test/vagrant/ is as
+ follows:
+
+  * local/ - Contains the Vagrantfile and manifest/init.pp file for
+     deploying the local datastore
+
+  * collector/ - Same as above for deploying the collector
+
+  * ext-ck-store/ - Same as above for deploying the external check
+     datastore; however, the external check store configuration is
+     partially completed.  
+
+  * config-store/ - Same as above for deploying config datastore.  As
+     configured this only responds to a single call for configuration
+     information.
+
+  * modules/ - Modules that are included as defined by the manifests
+     within each of the above configurations.  More info below.
+
+
+ The modules/ directory contains Puppet modules.  A puppet module is a
+ piece of configuration that is included by the configuration of the
+ VM being deployed by Vagrant.  For instance, if MySQL is the
+ included, the mysql module configures the VM for mysql, installs
+ passwords, etc.
+
+ The modules included are:
+
+  * apache - configures the local datastore to be exposed on port 80 (which is port forwarded to port 8081 as defined in /local/Vagrantfile)
+
+  * apt - execution of apt-get update before installing other modules
+
+  * curl - installs the curl package for testing the datastore
+
+  * collector - runs scripts for initializing the collector, namely
+     this establishes the database tables by running
+     ops-monitoring/collector/unit-tests/collector_table_reset.py.
+
+  * emacs - installs the emacs package
+
+  * flask - installs Python flask 
+
+  * local - runs scripts for initializing the local datastore.  As
+    currently configured in /test/vagrant/local/manifests/init.pp,
+    this runs the unit-test ops-monitoring/local/unit-tests/
+
+  * mysql
+  * postgresql
+  * psutil
+  * requests
+  * sslapache
+
+
+To use it:
+ 1. look at the file: manifests/init.pp
+   * In the "default" node class in that file, set any variables you
+     like to appropriate values for what you want to test, and include the
+     correct class for what you want to test (N.B. as of now, the only
+     database supported is postgresql, and the only class supported is
+     "local").
+ 2. Start the VM:
+
+vagrant up
+    
+    This should start up a vagrant VM, and run a bunch of puppet commands,
+    ideally successfully.  Once it's done, if everything has gone well,
+    you should be able to browse to URLs under:
+      http://localhost:8088/
+    and see pieces of the site

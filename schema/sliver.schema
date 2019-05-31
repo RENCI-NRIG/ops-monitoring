@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140828/sliver#",
+  "description": "GENI sliver",
+  "name": "Sliver",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "uuid": {
+      "description": "UUID for this sliver - unique at the aggregate",
+      "type": "string",
+      "required": true
+    },
+    "aggregate": {
+      "description": "GENI aggregate manager which created this sliver",
+      "type": [
+        {
+          "urn": "string",
+          "$ref": "http://www.gpolab.bbn.com/monitoring/schema/20140828/link#"
+        }
+      ],
+      "required": true
+    },
+    "slice_urn": {
+      "description": "URN of the GENI slice to which this sliver belongs",
+      "type": "string",
+      "required": true
+    },
+    "slice_uuid": {
+      "description": "UUID of the GENI slice to which this sliver belongs",
+      "type": "string",
+      "required": false
+    },
+    "creator": {
+      "description": "user who created this sliver",
+      "type": "string",
+      "required": false
+    },
+    "created": {
+      "description": "Creation time: number of microseconds since Jan 1 1970 00:00:00 UTC",
+      "type": "integer",
+      "required": true
+    },
+    "expires": {
+      "description": "Expiration time: number of microseconds since Jan 1 1970 00:00:00 UTC",
+      "type": "integer",
+      "required": true
+    },
+    "resource": {
+      "additionalProperties": false,
+      "required": true,
+      "properties": {
+        "resource_type": {
+          "description": "Type of the resource in this sliver",
+          "enum": ["node", "link"],
+          "required": true
+        },
+        "urn": {
+          "description": "URN of the resource in this sliver",
+          "type": "string",
+          "required": true
+        },
+        "href": {
+          "description": "href (URL) of the resource in this sliver",
+          "type": "string",
+          "required": true
+        }
+      }
+    }
+  }
+}

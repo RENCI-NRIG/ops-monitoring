@@ -1,0 +1,21 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140828/interface#",
+  "selfRef": "https://datastore.instageni.gpolab.bbn.com/info/interface/instageni.gpolab.bbn.com_interface_pc1:eth0",
+  "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+interface+pc1:eth0",
+  "ts": 1391194147100678,
+  "id": "instageni.gpolab.bbn.com_interface_pc1:eth0",
+  "addresses": [
+    {
+      "addrtype": "IPv4",
+      "address": "192.1.242.140",
+      "scope": "private"
+    },
+    {
+      "addrtype": "IPv6",
+      "address": "2001:cdba::3257:9652"
+    }
+  ],
+  "ops_monitoring:role": "control",
+  "ops_monitoring:max_bps": 10000000,
+  "ops_monitoring:max_pps": 1000000
+}

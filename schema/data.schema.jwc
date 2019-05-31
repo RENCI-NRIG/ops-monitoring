@@ -1,0 +1,53 @@
+// Local datastores send JSON data conforming to this schema in response
+// to this REST call:
+//    https://<datastore-host>/data/?q=
+//        {"filters":
+//            {"eventType":[<list of measurementNames>],
+//             "ts":{"gte":<lower bound timestamp>,
+//                   "lte":<upper bound timestamp},
+//             "obj":{"type":"<object type name>",
+//                    "id":[<list of object ids>]}}}
+//
+// (The above is split into multiple lines for readability; actual calls
+// are all on one line.)
+//
+// If <list of object ids> is "*", it means "all objects known to the
+// datastore of type <object type name>."
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140828/data#",
+  "description": "Operational monitoring data",
+  "name": "Data",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/metadata#"
+  },
+  "properties": {
+    "units": {
+      "description": "Valid units for the values in this metric",
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "description": "Description of this metric",
+      "type": "string",
+      "required": false
+    },
+    "tsdata": {
+      "description": "Time-series data",
+      "name": "tsdata",
+      "type": "array",
+      "required": false,
+      "items": {
+        "type": [
+          {
+            // number of microseconds since Jan 1 1970 00:00:00 UTC
+            "ts": "integer",
+            "v": "number"
+          }
+        ]
+      }
+    }
+  }
+}

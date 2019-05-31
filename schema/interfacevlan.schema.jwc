@@ -1,0 +1,34 @@
+// Local datastores send JSON data conforming to this schema in response
+// to this REST call:
+//    https://<datastore-host>/info/interfacevlan/<interfacevlan object id>
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140828/interfacevlan#",
+  "description": "subinterface representing a tagged VLAN on an interface",
+  "name": "interfacevlan",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "tag": {
+      "description": "numeric identifier of VLAN on the parent device",
+      // To indicate that there is no VLAN, use the value 0.
+      "type": "integer",
+      "required": true
+    },
+    "interface": {
+      "description": "parent interface of which this VLAN is a subinterface",
+      "type": [
+        {
+          // The convention for an interfacevlan URN is to take the interface
+          // URN and append :<VLAN tag>, e.g., :1750 .
+          "urn": "string",
+          "href": "string"
+        }
+      ],
+      "required": true
+    }
+  }
+}

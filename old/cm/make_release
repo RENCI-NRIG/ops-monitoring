@@ -1,0 +1,52 @@
+#!/bin/sh
+#----------------------------------------------------------------------
+# Copyright (c) 2014 Raytheon BBN Technologies
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and/or hardware specification (the "Work") to
+# deal in the Work without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Work, and to permit persons to whom the Work
+# is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Work.
+#
+# THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE WORK OR THE USE OR OTHER DEALINGS
+# IN THE WORK.
+#----------------------------------------------------------------------
+
+# This script creates a release tarball in the current directory
+# using the currently checked-out branch.
+
+# If any command fails (returns non-0 status), exit immediately.
+set -e
+
+# Get RELEASE_TAG string.
+
+if [ $# -lt 1 ] ; then
+    echo "Usage: $0 release-tag-name"
+    exit 1    
+fi
+
+RELEASE_TAG=$1
+
+echo "Tagging release ${RELEASE_TAG}"
+git tag ${RELEASE_TAG}
+git push origin ${RELEASE_TAG}
+
+TARBALL="$(pwd)/ops-monitoring.${RELEASE_TAG}.tar.bz2"
+echo "Creating tarball ${TARBALL}"
+
+# Make sure we're at the top of the working dir because
+# "git archive" only looks at the current dir and below.
+cd "$(git rev-parse --show-toplevel)"
+
+git archive --prefix ops-monitoring/ HEAD | bzip2 > ${TARBALL}
+ls -l ${TARBALL}

@@ -1,0 +1,33 @@
+These are examples of the data schema.  These should be generalized to
+form the schema requirements for monitoring project participants.
+
+Assumptions and notes regarding examples:
+
+* https://datastore.instageni.gpolab.bbn.com/ is the URL of the local
+  datastore which serves both metadata and measurement data about
+  gpo-ig - this could be any URL, the choice of a concrete location
+  is just for illustration purposes
+
+* I decided to call our project 'ops_monitoring' in the context of
+  this schema, and therefore where defining novel properties,
+  eventTypes, etc, i used that namespace
+
+* The $schema parameter does *not* need to be transmitted with the
+  data; it's just included in each file for clarity.
+
+* Individual files shouldn't contain comments, because json.load()
+  doesn't like that either.  Put any commentary needed in the README.
+
+In general, to test a file using validictory:
+
+  import validictory
+  import json
+  import urllib2
+  
+  datafile = <path to example file you want to test>
+  
+  data = json.load(open(datafile))
+  schema = json.load(urllib2.urlopen(data['$schema']))
+  validictory.validate(data, schema)
+
+No output means validictory considers the file to be valid.

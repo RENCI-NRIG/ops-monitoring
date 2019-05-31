@@ -1,0 +1,83 @@
+#!/bin/sh
+#----------------------------------------------------------------------
+# Copyright (c) 2014-2015 Raytheon BBN Technologies
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and/or hardware specification (the "Work") to
+# deal in the Work without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Work, and to permit persons to whom the Work
+# is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Work.
+#
+# THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE WORK OR THE USE OR OTHER DEALINGS
+# IN THE WORK.
+#----------------------------------------------------------------------
+
+# This script creates a release tarball in the release directory
+# using the tagged version of the code.
+
+# If any command fails (returns non-0 status), exit immediately.
+set -e
+
+if [ $# -lt 1 ] ; then
+    echo "Usage: $0 release-tag-name"
+    echo "use HEAD to build a release from the checked out version"
+    exit 1    
+fi
+
+RELEASE_TAG=$1
+
+
+# Make sure we're at the top of the working dir because
+# "git archive" only looks at the current dir and below.
+cd "$(git rev-parse --show-toplevel)"
+
+TARBALL="$(pwd)/release/ops-monitoring.${RELEASE_TAG}.tar.gz"
+TARBALL_GPOONLY="$(pwd)/release/ops-monitoring.gpo-only.${RELEASE_TAG}.tar.gz"
+echo "Creating tarball ${TARBALL}"
+
+
+if [ -d release ]; then
+    rm -rf release
+fi
+mkdir release
+prefix=ops-monitoring-${RELEASE_TAG}/
+git archive --format=tar --prefix ${prefix} ${RELEASE_TAG} | (cd release && tar xvf -)
+cd release/${prefix}
+make
+cd ..
+
+# List of files to exclude from the release tarball
+EXCLUDE_FILES="${prefix}.gitignore \
+               ${prefix}alerting \
+               GNUmakefile \
+               ${prefix}root.mk \
+               ${prefix}cm \
+               ${prefix}doc \
+               ${prefix}schema/update_schemas.sh \
+               ${prefix}test \
+               ${prefix}extck "
+
+tmp_exclude_file=$(mktemp exclude.XXXXXX)
+for pattern in ${EXCLUDE_FILES}; do
+    echo $pattern >> ${tmp_exclude_file}
+done
+
+
+tar cvzf ${TARBALL} -X ${tmp_exclude_file}  ${prefix}
+rm -f ${tmp_exclude_file}
+
+echo "Creating tarball ${TARBALL_GPOONLY}"
+
+tar cvzf ${TARBALL_GPOONLY} ${prefix}alerting ${prefix}test ${prefix}extck 
+ls -l ${TARBALL}
+ls -l ${TARBALL_GPOONLY}

@@ -1,0 +1,25 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140828/externalcheck#",
+  "id": "gpo",
+  "selfRef": "https://externalcheckstore.gpolab.bbn.com/info/externalcheck/gpo",
+  "ts": 1391192685740849,
+  "measRef": "https://externalcheckstore.gpolab.bbn.com/data",
+  "experiments": [
+    {
+      "href": "https://datastore.instageni.gpolab.bbn.com/info/experiment/missouri-ig_to_gpo-ig"
+    },
+    {
+      "href": "https://datastore.instageni.gpolab.bbn.com/info/experiment/rci-eg_to_gpo-eg"
+    }
+  ],
+  "monitored_aggregates": [
+      {
+         "id": "gpo-ig",
+         "href": "https://datastore.instageni.gpolab.bbn.com/info/aggregate/gpo-ig"
+      },
+      {
+         "id": "rci-eg",
+         "href": "https://rci-hn.exogeni.net/ops-monitoring/info/aggregate/rci-eg"
+      }
+   ]
+}

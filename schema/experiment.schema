@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140828/experiment#",
+  "description": "Monitoring experiment for external check datastore",
+  "name": "experiment",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "slice_uuid": { 
+       "description":"Slice uuid of experiment",
+       "type":"string",
+       "required":true
+    },
+    "slice_urn": {
+       "description":"Slice urn of experiment",
+       "type":"string",
+       "required":true
+    },
+    "source_aggregate": {
+       "description":"Source aggregate information",
+       "type":"object",
+       "properties": {
+          "urn": {
+            "type":"string",
+            "required": true
+          },
+          "href": {
+            "type":"string",
+            "required": true
+          }
+       }
+    },
+    "destination_aggregate": {
+       "description":"Destination aggregate information",
+       "type":"object",
+       "properties": {
+          "urn": {
+            "type":"string",
+            "required": true
+          },
+          "href": {
+            "type":"string",
+            "required": true
+          }
+       }
+    }
+  }
+}

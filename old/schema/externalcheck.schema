@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-03/hyper-schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140501/externalcheck#",
+  "description": "GENI monitoring external (to an aggregate) datastore",
+  "name": "externalcheck",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "measRef": {
+      "description":
+        "Location of measurement data about this aggregate and its resources",
+      "type": "string",
+      "required": true
+    },
+    "experiments": {
+      "description": "monitoring experiments coordinated by this external check store",
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+	"properties": {
+	   "href": {"type":"string"}
+        },
+	"required": ["href"]
+      }
+    },
+    "monitored_aggregates": {
+      "description": "Control plane monitoring of aggregates",
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+	"properties": {
+	   "id": {"type":"string"},
+	   "href": {"type":"string"}
+        },
+	"required": ["id","href"]
+      }
+    }
+  }
+}

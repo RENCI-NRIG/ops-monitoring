@@ -1,0 +1,3 @@
+For GENI aggregates, use:
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140828/aggregate#"
+

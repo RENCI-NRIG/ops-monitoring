@@ -1,0 +1,81 @@
+#! /usr/bin/python
+#----------------------------------------------------------------------
+# Copyright (c) 2014-2015 Raytheon BBN Technologies
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and/or hardware specification (the "Work") to
+# deal in the Work without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Work, and to permit persons to whom the Work
+# is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Work.
+#
+# THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE WORK OR THE USE OR OTHER DEALINGS
+# IN THE WORK.
+#----------------------------------------------------------------------
+
+"""Checks the interface rx utilization of a shared node"""
+
+import argparse
+import nagiosplugin
+import sys 
+
+sys.path.append("/usr/local/lib/")
+
+from psql_queries import CollectorQuerier,ValueUnknownException
+from geni_alerting import GeniAlertingHelper
+
+class SharedNodeInterfaceRxUtil(nagiosplugin.Resource):
+
+    def __init__(self, aggregate):
+        self._aggregate = aggregate
+        self._helper = GeniAlertingHelper()
+        self._username = self._helper.getUsername()
+        self._password = self._helper.getPassword()
+        self._database = self._helper.getDatabase()
+        self._host = self._helper.getHost()
+        self._querier = CollectorQuerier(self._database, self._host, 
+                                          self._username, self._password)
+
+    def probe(self):
+        # Query the collector data store
+
+        results = self._querier.get_last_interface_rx_util(self._aggregate)
+
+        name = {}
+        value = {}
+        metric = []
+
+        for resource in results:
+            name[resource] = resource.split('+')[-1]
+            value[resource] = results[resource]
+            metric.append(nagiosplugin.Metric(name[resource], value[resource], min=0,
+                                              context='util'))
+
+        return metric
+
+@nagiosplugin.guarded
+def main():
+    argp = argparse.ArgumentParser(description=__doc__)
+    argp.add_argument('-w', '--warning', metavar='RANGE', default='',
+                      help='return warning if load is outside RANGE')
+    argp.add_argument('-c', '--critical', metavar='RANGE', default='',
+                      help='return critical if load is outside RANGE')
+    argp.add_argument('-a', '--aggregate',
+                      help='identifier for aggregate to check')
+    args = argp.parse_args()
+    check = nagiosplugin.Check(
+        SharedNodeInterfaceRxUtil(args.aggregate),
+        nagiosplugin.ScalarContext('util', args.warning, args.critical))
+    check.main()
+
+if __name__ == '__main__':
+    main()

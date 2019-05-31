@@ -1,0 +1,60 @@
+This is GPO code for the GENI operational monitoring project.
+
+For a description of what has changed in this release, see RELEASENOTES
+in this directory.
+
+For links to all documentation of the operational monitoring project, see:
+
+  http://groups.geni.net/geni/wiki/OperationalMonitoring
+
+This codebase is a set of reference components which fully or partially
+implement parts of the monitoring component model listed at:
+
+  http://www.gpolab.bbn.com/monitoring/components/
+
+You can get more recent versions of this source by following the
+directions here:
+
+  http://trac.gpolab.bbn.com/ops-monitoring/wiki/GettingSourceCode
+
+Current and past releases of this software are available here:
+
+  http://software.geni.net/local-sw/
+
+This directory contains one subdirectory for each component:
+ * Directories which implement components of the ops monitoring model:
+   * alerting/: reference alerting utilities 
+   * collector/: reference collector 
+   * schema/: schema/examples for datastore polling API
+   * local/: reference local datastore 
+ * Directories containing helper code:
+   * common/: python libraries used by multiple components
+   * config/: python configuration files used by multiple components
+   * test/: generic utilities for testing code
+   * cm/: configuration management utilities
+
+All files are:
+
+#----------------------------------------------------------------------
+# Copyright (c) 2014 Raytheon BBN Technologies
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and/or hardware specification (the "Work") to
+# deal in the Work without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Work, and to permit persons to whom the Work
+# is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Work.
+#
+# THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE WORK OR THE USE OR OTHER DEALINGS
+# IN THE WORK.
+#----------------------------------------------------------------------
+

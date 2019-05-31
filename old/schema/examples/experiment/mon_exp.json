@@ -1,0 +1,16 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140501/experiment#",
+  "id": "missouri-ig_to_gpo-ig_rtt",
+  "selfRef": "https://datastore.externalchecks.geni.net/info/experiment/missouri-ig_to_gpo-ig_rtt",
+  "slice_urn": "urn:publicid:IDN+ch.geni.net:gpo-infra+slice+tuptyexclusive",
+  "slice_uuid": "8c6b97fa-493b-400f-95ee-19accfaf4ae8",
+  "ts": 1391192685740849,
+  "source_aggregate": {
+    "urn": "urn:publicid:IDN+instageni.missouri.edu+authority+cm",
+    "href": "https://datastore.instageni.missouri.edu/info/aggregates/missouri-ig"
+  },
+  "destination_aggregate": {
+    "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+authority+cm",
+    "href": "https://datastore.instageni.gpolab.bbn.com/info/aggregates/gpo-ig"
+  }
+}

@@ -1,0 +1,30 @@
+Some plugins in this directory will use the nagiosplugin python
+library (https://pypi.python.org/pypi/nagiosplugin/)
+
+The library uses the following design to construct nagios checks:
+             +----------+                \
+             | Resource |                 |
+             +----------+                 |
+       _____/      |     \_____           | Acquisition
+      v            v           v          |
++---------+   +---------+   +---------+   |
+| Metric  |...| Metric  |...| Metric  |  <
++---------+   +---------+   +---------+   |
+     |             |             |        |
+     v             v             v        |
++---------+   +---------+   +---------+   |
+| Context |...| Context |...| Context |   | Evaluation
++---------+   +---------+   +---------+   |
+     |             |             |        |
+     v             v             v        |
++---------+   +---------+   +---------+   |
+| Result  |...| Result  |...| Result  |  <
++---------+   +---------+   +---------+   |
+           \___    |    ___/              |
+               v   v   v                  | Presentation
+              +---------+                 |
+              | Summary |                 |
+              +---------+                /
+
+The resource class has a "probe" command that is responsible for obtaining 
+the data to polulate the Metric object.

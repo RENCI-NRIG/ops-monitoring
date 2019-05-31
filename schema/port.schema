@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-03/hyper-schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140501/port#",
+  "description": "interface with some extensions for GENI monitoring use",
+  "name": "port",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/port#"
+  },
+  "properties": {
+    "ops_monitoring:role": { 
+       "description":"Role of interface (experimental, control)",
+       "type":"string",
+       "required":false
+    },
+    "ops_monitoring:max_bps": {
+       "description":"Maximum bps on interface",
+       "type":"number",
+       "required":false
+    },
+    "ops_monitoring:max_pps": {
+       "description":"Maximum bps on interface",
+       "type":"number",
+       "required":false    
+    }
+  }
+}

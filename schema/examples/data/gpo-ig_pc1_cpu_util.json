@@ -1,0 +1,16 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140828/data#",
+  "id": "cpu_util:instageni.gpolab.bbn.com_node_pc1",
+  "subject": "https://datastore.instageni.gpolab.bbn.com/info/node/instageni.gpolab.bbn.com_node_pc1",
+  "eventType": "ops_monitoring:cpu_util",
+  "description": "CPU utilization percentage",
+  "units": "percent",
+  "tsdata": [
+    { "ts": 1391198716651283, "v": 45 },
+    { "ts": 1391198776651284, "v": 44 },
+    { "ts": 1391198836651284, "v": 44 },
+    { "ts": 1391198896651284, "v": 47 },
+    { "ts": 1391198956651284, "v": 46 },
+    { "ts": 1391199016651285, "v": 47 }
+  ]
+}

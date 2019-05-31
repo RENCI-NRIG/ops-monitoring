@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-03/hyper-schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140501/sliver#",
+  "description": "GENI sliver",
+  "name": "Sliver",
+  "type": "object",
+  "additionalProperties": true,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "uuid": {
+      "description": "UUID for this sliver - unique at the aggregate",
+      "type": "string",
+      "required": true
+    },
+    "aggregate": {
+      "description": "GENI aggregate manager which created this sliver",
+      "type": [
+        {
+          "urn": "string",
+          "$ref": "http://www.gpolab.bbn.com/monitoring/schema/20140501/link#"
+        }
+      ],
+      "required": true
+    },
+    "slice_urn": {
+      "description": "URN of the GENI slice to which this sliver belongs",
+      "type": "string",
+      "required": true
+    },
+    "slice_uuid": {
+      "description": "UUID of the GENI slice to which this sliver belongs",
+      "type": "string",
+      "required": false
+    },
+    "creator_urn": {
+      "description": "URN of the GENI user who created this sliver",
+      "type": "string",
+      "required": false
+    },
+    "created": {
+      "description": "Creation time: 64-bit integer timestamp",
+      "type": "integer",
+      "required": true
+    },
+    "expires": {
+      "description": "Expiration time: 64-bit integer timestamp",
+      "type": "integer",
+      "required": true
+    },
+    "resources": {
+      "description": "resources controlled by this aggregate",
+      "type": "array",
+      "required": false,
+      "items": {
+        "type": "object",
+	"properties": {
+	   "urn": {"type":"string"},
+	   "href": {"type":"string"}
+        },
+	"required": ["urn","href"]
+      }
+    }
+  }
+}

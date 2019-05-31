@@ -1,0 +1,57 @@
+// Local datastores send JSON data conforming to this schema in response
+// to this REST call:
+//    https://<datastore-host>/info/node/<node object id>
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140828/node#",
+  "description": "node with some extensions for GENI monitoring use",
+  "name": "node",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "node_type" : {
+      "description": "What kind of node this represents",
+      "enum": [ "server", "vm", "switch", "wimax_bs" ],
+      // server: "bare metal" node
+      // vm: virtual machine
+      // switch: network switch
+      // wimax_bs: WiMAX base station
+      "required": true
+    },
+    "ops_monitoring:mem_total_kb": { 
+       "description":"Total memory in kilobytes",
+       "type":"number",
+       "required":false
+    },
+    "virtualization_type": {
+       "description":"Machine virtualization platform in use",
+       // If node_type is "server", this specifies the kind of
+       // VMs hosted on the node.
+       // If node_type is "vm", it specifies what kind of VM
+       // it is.
+       "enum": [ "xen", "openvz", "kvm" ],
+       "required":false
+    },
+    "interfaces": {
+      "description": "interfaces attached to the node",
+      "type": "array",
+      "required": false,
+      "items": {
+        "type": "object",
+        "properties": {
+          "urn": {
+            "type":"string",
+            "required": true
+          },
+          "href": {
+            "type":"string",
+            "required": true
+          }
+        }
+      }
+    }    
+  } 
+}

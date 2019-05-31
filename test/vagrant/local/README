@@ -1,0 +1,17 @@
+To test the local datastore:
+
+a. Follow the instructions "To use the VMs:" in ../README.
+
+b. Commands that must be run on the local datastore VM are prefixed with
+"local$".
+
+c. Try fetching some monitoring info from the web server running on the VM.
+    vboxhost$ curl -k --cert ${TOOLCERT} https://192.168.33.10/info/aggregate/gpo-ig
+    vboxhost$ curl -k --cert ${TOOLCERT} https://192.168.33.10/info/node/instageni.gpolab.bbn.com_node_pc1
+
+d. Try fetching some monitoring info using rest_call.py:
+    vboxhost$ cd ${TOP}/collector
+    vboxhost$ ./rest_call.py -c ${TOOLCERT} -i https://192.168.33.10/info/aggregate/gpo-ig
+
+e. You can test the local datastore further by running the collector VM.
+See ${TOP}/test/vagrant/collector/README.

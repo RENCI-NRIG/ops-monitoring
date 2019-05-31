@@ -1,0 +1,6 @@
+*.pyc
+*.py~
+*.pp~
+*.vagrant
+extern/
+.DS_Store/

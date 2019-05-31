@@ -1,0 +1,43 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140501/link#",
+  "id": "datastore.grnoc.iu.edu_link_001",
+  "ts": 1391192705275101,
+  "selfRef": "https://datastore.grnoc.iu.edu/info/link/salt_port_1750",
+  "urn": "urn:publicid:IDN+datastore.grnoc.iu.edu+salt_port_1750",
+  "endpoints": [
+    { 
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+interface+sdn-sw.salt.net.internet2.edu_100GigabitEthernet3_2_1750",
+      "href": "https://datastore.grnoc.iu.edu/info/interfacevlan/sdn-sw.salt.net.internet2.edu_100GigabitEthernet3_2_1750"
+    },
+    { 
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+interface+sdn-sw.port.net.internet2.edu_100GigabitEthernet3_2_1750",
+      "href": "https://datastore.grnoc.iu.edu/info/interfacevlan/sdn-sw.port.net.internet2.edu_100GigabitEthernet3_2_1750"    
+    }
+  ],
+  "l2path": [  
+    { 
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+interface+sdn-sw.salt.net.internet2.edu_100GigabitEthernet3_2_1750",
+      "href": "https://datastore.grnoc.iu.edu/info/interfacevlan/sdn-sw.salt.net.internet2.edu_100GigabitEthernet3_2_1750"
+    },
+    {
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+interface+sdn-sw.salt.net.internet2.edu_100GigabitEthernet3_1_47",
+      "href": "https://datastore.grnoc.iu.edu/info/interfacevlan/sdn-sw.salt.net.internet2.edu_100GigabitEthernet3_1_47"
+    },
+    {
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+interface+sdn-sw.seat.net.internet2.edu_100GigabitEthernet3_2_47",
+      "href": "https://datastore.grnoc.iu.edu/info/interfacevlan/sdn-sw.seat.net.internet2.edu_100GigabitEthernet3_2_47"    
+    },
+    {
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+interface+sdn-sw.seat.net.internet2.edu_100GigabitEthernet3_1_38",
+      "href": "https://datastore.grnoc.iu.edu/info/interfacevlan/sdn-sw.seat.net.internet2.edu_100GigabitEthernet3_1_38"    
+    },
+    { 
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+interface+sdn-sw.port.net.internet2.edu_100GigabitEthernet3_1_38",
+      "href": "https://datastore.grnoc.iu.edu/info/interfacevlan/sdn-sw.port.net.internet2.edu_100GigabitEthernet3_1_38"    
+    },
+    { 
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+interface+sdn-sw.port.net.internet2.edu_100GigabitEthernet3_2_1750",
+      "href": "https://datastore.grnoc.iu.edu/info/interfacevlan/sdn-sw.port.net.internet2.edu_100GigabitEthernet3_2_1750"    
+    }
+  ]
+}

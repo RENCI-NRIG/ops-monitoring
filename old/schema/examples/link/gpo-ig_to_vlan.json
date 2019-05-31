@@ -1,0 +1,17 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140501/link",
+  "selfRef": "https://datastore.instageni.gpolab.bbn.com/links/arbitrary_id_001",
+  "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+link+arbitrary_id_001",
+  "ts": 1391194147100678,
+  "id": "arbitrary_id_001",
+  "endpoints": [
+    {
+      "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+interface+pc2:eth1",
+      "href": "https://datastore.instageni.gpolab.bbn.com/ports/instageni.gpolab.bbn.com_interface_pc2:eth1"
+    },
+    {
+      "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+interface+pc1:eth1:1750",
+      "href": "https://datastore.instageni.gpolab.bbn.com/port-vlans/instageni.gpolab.bbn.com_interface_pc1:eth1:1750"
+    }
+  ]
+}

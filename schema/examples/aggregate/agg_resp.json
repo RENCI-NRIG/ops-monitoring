@@ -1,0 +1,15 @@
+{
+  "$schema": "http://unis.incntre.iu.edu/schema/20120709/domain#",
+  "id": "gpo-ig",
+  "selfRef": "http://127.0.0.1/aggregate/gpo-ig",
+  "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+authority+cm",
+  "ts": 1391192685740849,
+  "nodes": [
+    {
+      "href": "http://127.0.0.1:5000/info/aggregate/gpo-ig/pc1"
+    },
+    {
+      "href": "http://127.0.0.1:5000/info/aggregate/gpo-ig/pc2"
+    }
+  ]
+}

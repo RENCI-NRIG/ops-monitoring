@@ -1,0 +1,28 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140828/aggregate#",
+  "id": "gpo-ig",
+  "selfRef": "https://datastore.instageni.gpolab.bbn.com/info/aggregate/gpo-ig",
+  "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+authority+cm",
+  "ts": 1391192685740849,
+  "measRef": "https://datastore.instageni.gpolab.bbn.com/data",
+  "monitoring_version": "v2.0",
+  "operational_status": "production",
+  "resources": [
+    {
+      "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+node+pc1",
+      "resource_type": "node",
+      "href": "https://datastore.instageni.gpolab.bbn.com/nodes/instageni.gpolab.bbn.com_node_pc1"
+    },
+    {
+      "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+node+pc2",
+      "resource_type": "node",
+      "href": "https://datastore.instageni.gpolab.bbn.com/nodes/instageni.gpolab.bbn.com_node_pc2"
+    }
+  ],
+  "slivers": [
+    {
+      "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+sliver+26947",
+      "href": "https://datastore.instageni.gpolab.bbn.com/slivers/instageni.gpolab.bbn.com_sliver_36947"
+    }
+  ]
+}

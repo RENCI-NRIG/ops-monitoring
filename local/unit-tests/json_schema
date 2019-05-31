@@ -1,0 +1,202 @@
+{
+ 
+ "opsconfig": {
+		"$schema":"schema:string",
+
+		"aggregates": {"schema:type":"schema:list", "urn":"schema:string", "amtype":"schema:string","href":"schema:string"},
+
+		"authorities": {"schema:type":"schema:list", "urn":"schema:string", "href":"schema:string"},
+
+		"id":"schema:string",
+
+		"selfRef":"schema:string",
+
+		"ts":"schema:number"
+	     }
+,
+"interface": {
+		"$schema":"schema:string",
+
+		"address": {"schema:type":"schema:dict", "type":"schema:string", "address":"schema:string"},
+
+		"ops_monitoring:role":"schema:string",
+
+ 		"ops_monitoring:max_bps":"schema:number", 
+
+		"ops_monitoring:max_pps":"schema:number",
+
+		"id":"schema:string",
+
+		"urn":"schema:string",
+
+		"selfRef":"schema:string",
+
+		"ts":"schema:number"
+	     }
+,
+"interfacevlan": {
+		"$schema":"schema:string",
+
+		"port": {"schema:type":"schema:dict", "urn":"schema:string", "href":"schema:string"},
+
+
+		"id":"schema:string",
+
+		"urn":"schema:string",
+
+		"selfRef":"schema:string",
+
+		"ts":"schema:number",
+
+		"tag":"schema:number"
+	     }
+,
+"node": {
+		"$schema":"schema:string",
+
+		"ports": {"schema:type":"schema:list", "urn":"schema:string", "href":"schema:string"},
+
+		"ops_monitoring:mem_total_kb":"schema:number",
+
+		"id":"schema:string",
+
+		"urn":"schema:string",
+
+		"selfRef":"schema:string",
+
+		"ts":"schema:number"
+	     }
+,
+"link": {
+		"$schema":"schema:string",
+
+		"endpoints": {"schema:type":"schema:list", "urn":"schema:string", "href":"schema:string"},
+
+		"id":"schema:string",
+
+		"urn":"schema:string",
+
+		"selfRef":"schema:string",
+
+		"ts":"schema:number"
+	     }
+,
+"aggregate": {
+		"$schema":"schema:string",
+
+		"resources": {"schema:type":"schema:list", "urn":"schema:string", "href":"schema:string"},
+
+		"slivers": {"schema:type":"schema:list", "urn":"schema:string", "href":"schema:string"},
+
+		"id":"schema:string",
+
+		"urn":"schema:string",
+
+		"selfRef":"schema:string",
+
+		"measRef":"schema:string",
+
+		"ts":"schema:number"
+	     }
+,
+"authority": {
+		"$schema":"schema:string",
+
+		"users": {"schema:type":"schema:list", "urn":"schema:string", "href":"schema:string"},
+
+		"slices": {"schema:type":"schema:list", "urn":"schema:string", "href":"schema:string"},
+
+		"id":"schema:string",
+
+		"urn":"schema:string",
+
+		"selfRef":"schema:string",
+
+		"ts":"schema:number"
+	     }
+,
+"slice": {
+		"$schema":"schema:string",
+
+		"members": {"schema:type":"schema:list", "urn":"schema:string", "href":"schema:string", "role":"schema:string"},
+
+		"authority": {"schema:type":"schema:dict", "urn":"schema:string", "href":"schema:string"},
+
+		"id":"schema:string",
+
+		"urn":"schema:string",
+
+		"uuid":"schema:string",
+
+		"selfRef":"schema:string",
+
+		"ts":"schema:number",
+
+		"created":"schema:number",
+
+		"expires":"schema:number"
+	     }
+,
+"sliver": {
+		"$schema":"schema:string",
+
+		"resources": {"schema:type":"schema:list", "urn":"schema:string", "href":"schema:string"},
+
+		"aggregate": {"schema:type":"schema:dict", "urn":"schema:string", "href":"schema:string"},
+
+		"id":"schema:string",
+
+		"urn":"schema:string",
+
+		"uuid":"schema:string",
+
+		"selfRef":"schema:string",
+
+		"slice_urn":"schema:string",
+		
+		"slice_uuid":"schema:string",
+
+		"creator":"schema:string",
+
+		"ts":"schema:number",
+
+		"created":"schema:number",
+
+		"expires":"schema:number"
+	     }
+,
+"user": {
+		"$schema":"schema:string",
+
+		"authority": {"schema:type":"schema:dict", "urn":"schema:string", "href":"schema:string"},
+
+		"id":"schema:string",
+
+		"urn":"schema:string",
+
+		"selfRef":"schema:string",
+
+		"ts":"schema:number",
+
+		"fullname":"schema:string",
+
+		"email":"schema:string"
+	     }
+,
+"data": {
+		"$schema":"schema:string",
+
+		"id":"schema:string",
+
+		"subject":"schema:string",
+
+		"eventType":"schema:string",
+
+		"description":"schema:string",
+
+		"units":"schema:string",
+
+		"tsdata": {"schema:type":"schema:list", "ts":"schema:number", "v":"schema:number"}
+
+	     }
+ }

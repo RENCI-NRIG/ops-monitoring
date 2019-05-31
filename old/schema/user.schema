@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-03/hyper-schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140501/user#",
+  "description": "GENI user",
+  "name": "User",
+  "type": "object",
+  "additionalProperties": true,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "authority": {
+      "description": "GENI authority at which this user is registered",
+      "type": [
+        {
+          "urn": "string",
+          "$ref": "http://json-schema.org/draft-03/links#"
+        }
+      ],
+      "required": true
+    },
+    "fullname": {
+      "description": "Name of this user",
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "description": "Email address of this user",
+      "type": "string",
+      "required": true
+    }
+  }
+}

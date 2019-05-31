@@ -1,0 +1,17 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140828/data#",
+  "id": "disk_part_max_use:instageni.gpolab.bbn.com_node_pc1",
+  "subject": "https://datastore.instageni.gpolab.bbn.com/info/node/instageni.gpolab.bbn.com_node_pc1",
+  "eventType": "ops_monitoring:disk_part_max_used",
+  "description": "Percent full of fullest local disk partition",
+  "units": "percent",
+  "tsdata": [
+    { "ts": 1391198716651283, "v": 0.414 },
+    { "ts": 1391198776651284, "v": 0.414 },
+    { "ts": 1391198836651284, "v": 0.423 },
+    { "ts": 1391198896651284, "v": 0.423 },
+    { "ts": 1391198956651284, "v": 0.423 },
+    { "ts": 1391199016651285, "v": 0.423 }
+  ]
+}
+

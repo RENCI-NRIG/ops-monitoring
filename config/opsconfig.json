@@ -1,0 +1,871 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140828/opsconfig#",
+  "id": "geni-prod",
+  "selfRef": "https://opsconfigdatastore.gpolab.bbn.com/info/opsconfig/geni-prod",
+  "ts": 1404856180792745,
+  "aggregatestores": [
+    {
+      "urn": "urn:publicid:IDN+ion.internet2.edu+authority+am",
+      "amtype": "network-aggregate",
+      "href": "https://geni-am.net.internet2.edu/info/aggregate/ion.internet2.edu"
+    },
+    {
+      "urn": "urn:publicid:IDN+al2s.net.internet2.edu+authority+cm",
+      "amtype": "network-aggregate",
+      "href": "https://gmoc-db.grnoc.iu.edu/geni-local-datastore/info/aggregate/al2s.net.internet2.edu"
+    },
+    {
+      "urn": "urn:publicid:IDN+of.internet2.edu+authority+cm",
+      "amtype": "network-aggregate",
+      "href": "https://gmoc-db.grnoc.iu.edu/geni-local-datastore/info/aggregate/of.net.internet2.edu"
+    },
+    {
+      "urn": "urn:publicid:IDN+dragon.maxgigapop.net+authority+am",
+      "amtype": "network-aggregate",
+      "href": "https://nutshell.maxgigapop.net/info/aggregate/dragon.maxgigapop.net"
+    },
+    {
+       "urn": "urn:publicid:IDN+utah.geniracks.net+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.utah.geniracks.net:5001/info/aggregate/utah-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+emulab.net+authority+cm",
+       "amtype": "protogeni",
+       "href": "https://www.emulab.net:5001/info/aggregate/utah-pg"
+    },
+    {
+       "urn": "urn:publicid:IDN+utahddc.geniracks.net+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.utahddc.geniracks.net:5001/info/aggregate/utahddc-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.gpolab.bbn.com:5001/info/aggregate/gpo-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.northwestern.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.northwestern.edu:5001/info/aggregate/northwestern-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+lan.sdn.uky.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.lan.sdn.uky.edu:5001/info/aggregate/uky-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+geni.kettering.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.geni.kettering.edu:5001/info/aggregate/kettering-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.rnoc.gatech.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.rnoc.gatech.edu:5001/info/aggregate/gatech-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.cs.princeton.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.cs.princeton.edu:5001/info/aggregate/princeton-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.clemson.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.clemson.edu:5001/info/aggregate/clemson-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.ku.gpeni.net+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.ku.gpeni.net:5001/info/aggregate/kansas-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+genirack.nyu.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.genirack.nyu.edu:5001/info/aggregate/nyu-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.maxgigapop.net+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.maxgigapop.net:5001/info/aggregate/max-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.nysernet.org+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.nysernet.org:5001/info/aggregate/nysernet-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.sox.net+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.sox.net:5001/info/aggregate/sox-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.illinois.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.illinois.edu:5001/info/aggregate/illinois-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.rnet.missouri.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.rnet.missouri.edu:5001/info/aggregate/missouri-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.wisc.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.wisc.edu:5001/info/aggregate/wisconsin-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.rutgers.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.rutgers.edu:5001/info/aggregate/rutgers-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.stanford.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.stanford.edu:5001/info/aggregate/stanford-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+geni.it.cornell.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.geni.it.cornell.edu:5001/info/aggregate/cornell-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.lsu.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.lsu.edu:5001/info/aggregate/lsu-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+geni.case.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.geni.case.edu:5001/info/aggregate/cwru-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.iu.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.iu.edu:5001/info/aggregate/moxi-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.nps.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.nps.edu:5001/info/aggregate/nps-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.uidaho.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.uidaho.edu:5001/info/aggregate/idaho-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.idre.ucla.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.idre.ucla.edu:5001/info/aggregate/ucla-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.osu.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.osu.edu:5001/info/aggregate/osu-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.umkc.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.umkc.edu:5001/info/aggregate/umkc-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+geni.uchicago.edu+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.geni.uchicago.edu:5001/info/aggregate/uchicago-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+instageni.metrodatacenter.com+authority+cm",
+       "amtype": "instageni",
+       "href": "https://www.instageni.metrodatacenter.com:5001/info/aggregate/ohmetrodc-ig"
+    },
+    {
+       "urn": "urn:publicid:IDN+exogeni.net:rcivmsite+authority+am",
+       "amtype": "exogeni",
+       "href": "https://rci-hn.exogeni.net:5001/info/aggregate/rcivmsite"
+    },
+    {
+       "urn": "urn:publicid:IDN+exogeni.net:bbnvmsite+authority+am",
+       "amtype": "exogeni",
+       "href": "https://bbn-hn.exogeni.net:5001/info/aggregate/bbnvmsite"
+    },
+    {
+       "urn": "urn:publicid:IDN+exogeni.net:nictavmsite+authority+am",
+       "amtype": "exogeni",
+       "href": "https://nicta-hn.exogeni.net:5001/info/aggregate/nictavmsite"
+    },
+    {
+       "urn": "urn:publicid:IDN+exogeni.net:fiuvmsite+authority+am",
+       "amtype": "exogeni",
+       "href": "https://fiu-hn.exogeni.net:5001/info/aggregate/fiuvmsite"
+    },
+    {
+       "urn": "urn:publicid:IDN+exogeni.net:uhvmsite+authority+am",
+       "amtype": "exogeni",
+       "href": "https://uh-hn.exogeni.net:5001/info/aggregate/uhvmsite"
+    },
+    {
+       "urn": "urn:publicid:IDN+exogeni.net:ncsuvmsite+authority+am",
+       "amtype": "exogeni",
+       "href": "https://ncsu-hn.exogeni.net:5001/info/aggregate/ncsuvmsite"
+    },
+    {
+       "urn": "urn:publicid:IDN+exogeni.net:wvnvmsite+authority+am",
+       "amtype": "exogeni",
+       "href": "https://wvn-hn.exogeni.net:5001/info/aggregate/wvnvmsite"
+    },
+    {
+       "urn": "urn:publicid:IDN+exogeni.net:uva-nlvmsite+authority+am",
+       "amtype": "exogeni",
+       "href": "urn:publicid:IDN+exogeni.net:uva-nlvmsite+authority+am"
+    },
+    {
+       "urn": "urn:publicid:IDN+exogeni.net:uflvmsite+authority+am",
+       "amtype": "exogeni",
+       "href": "https://ufl-hn.exogeni.net:5001/info/aggregate/uflvmsite"
+    },
+    {
+       "urn": "urn:publicid:IDN+exogeni.net:ucdvmsite+authority+am",
+       "amtype": "exogeni",
+       "href": "https://ucd-hn.exogeni.net:5001/info/aggregate/ucdvmsite"
+    },
+    {
+       "urn": "urn:publicid:IDN+exogeni.net:slvmsite+authority+am",
+       "amtype": "exogeni",
+       "href": "https://sl-hn.exogeni.net:5001/info/aggregate/slvmsite"
+    },
+    {
+       "urn": "urn:publicid:IDN+exogeni.net:osfvmsite+authority+am",
+       "amtype": "exogeni",
+       "href": "https://osf-hn.exogeni.net:5001/info/aggregate/osfvmsite"
+    },
+    {
+       "urn": "urn:publicid:IDN+clemson-clemson-control-1.clemson.edu+authority+am",
+       "amtype": "opengeni",
+       "href": "https://clemson-clemson-control-1.clemson.edu/info/aggregate/gram-clemson"
+    }
+  ],
+  "externalcheckstores": [
+    {
+       "href": "https://extckdatastore.gpolab.bbn.com/info/externalcheck/gpo"
+    }
+  ],
+  "authorities": [
+    {
+       "urn": "urn:publicid+IDN+ch.geni.net+authority+ch",
+       "href": "https://ch.geni.net/info/authority/ch.geni.net"
+    }
+  ],
+
+
+  "info": [
+    {  "name": "aggregate",
+       "db_schema": [
+             ["$schema", "varchar", true],
+             ["id", "varchar", true],
+             ["selfRef", "varchar", true],
+             ["urn", "varchar", true],
+             ["ts", "int8", true],
+             ["measRef","varchar", false],
+             ["populator_version", "varchar", false],
+             ["operational_status", "varchar", true],
+             ["routable_ip_poolsize", "int4", false]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]],
+            ["UNIQUE (%s)", ["measRef"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name":"node",
+        "db_schema": [
+             ["$schema", "varchar", true],
+             ["id", "varchar", true],
+             ["selfRef", "varchar", true],
+             ["urn", "varchar", true],
+             ["ts", "int8", true],
+             ["node_type", "varchar", false],
+             ["properties$mem_total_kb", "int8", false],
+             ["virtualization_type", "varchar", false]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name": "link",
+        "db_schema": [
+             ["$schema", "varchar", true],
+             ["id", "varchar", true],
+             ["selfRef", "varchar", true],
+             ["urn", "varchar", true],
+             ["layer", "varchar", false],
+             ["ts", "int8", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name": "sliver",
+        "db_schema": [
+             ["$schema", "varchar", true],
+             ["id", "varchar", true],
+             ["selfRef", "varchar", true],
+             ["urn", "varchar", true],
+             ["uuid", "varchar", true],
+             ["ts", "int8", true],
+             ["aggregate_urn", "varchar", true],
+             ["aggregate_href", "varchar", true],
+             ["slice_urn", "varchar", true],
+             ["slice_uuid", "varchar", false],
+             ["creator", "varchar", false],
+             ["created", "int8", true],
+             ["expires", "int8", true],
+             ["node_id", "varchar", false],
+             ["link_id", "varchar", false]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]],
+            ["UNIQUE (%s)", ["uuid"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["aggregate_urn", "ops_aggregate", "urn"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["aggregate_href", "ops_aggregate", "selfRef"]]
+        ],
+        "dependencies" : ["ops_aggregate"]
+    },
+    {   "name":"interface",
+        "db_schema": [
+             ["$schema", "varchar", true],
+             ["id", "varchar", true],
+             ["selfRef", "varchar", true],
+             ["urn", "varchar", true],
+             ["ts", "int8", true],
+             ["properties$role", "varchar", false],
+             ["properties$max_bps", "int8", false],
+             ["properties$max_pps", "int8", false]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name": "interfacevlan",
+        "db_schema": [
+             ["$schema", "varchar", true],
+             ["id", "varchar", true],
+             ["selfRef", "varchar", true],
+             ["urn", "varchar", true],
+             ["ts", "int8", true],
+             ["tag", "int8", true],
+             ["interface_urn", "varchar", true],
+             ["interface_href", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["interface_urn", "ops_interface", "urn"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["interface_href", "ops_interface", "selfRef"]]
+        ],
+        "dependencies" : ["ops_interface"]
+    },
+    {   "name":"authority",
+        "db_schema": [
+             ["$schema", "varchar", true],
+             ["id", "varchar", true],
+             ["selfRef", "varchar", true],
+             ["urn", "varchar", true],
+             ["ts", "int8", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name": "slice",
+       "db_schema": [
+             ["$schema", "varchar", true],
+             ["id", "varchar", true],
+             ["selfRef", "varchar", true],
+             ["urn", "varchar", true],
+             ["uuid", "varchar", true],
+             ["ts", "int8", true],
+             ["authority_urn", "varchar", true],
+             ["authority_href", "varchar", true],
+             ["created", "int8", true],
+             ["expires", "int8", true]
+       ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]],
+            ["UNIQUE (%s)", ["uuid"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["authority_urn", "ops_authority", "urn"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["authority_href", "ops_authority", "selfRef"]]
+        ],
+        "dependencies" : ["ops_authority"]
+    },
+    {   "name":"user",
+        "db_schema": [
+             ["$schema", "varchar", true],
+             ["id", "varchar", true],
+             ["selfRef", "varchar", true],
+             ["urn", "varchar", true],
+             ["ts", "int8", true],
+             ["authority_urn", "varchar", true],
+             ["authority_href", "varchar", true],
+             ["fullname", "varchar", true],
+             ["email", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["authority_urn", "ops_authority", "urn"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["authority_href", "ops_authority", "selfRef"]]
+        ],
+        "dependencies" : ["ops_authority"]
+    },
+    {   "name":"externalcheck",
+        "db_schema": [
+             ["$schema", "varchar", true],
+             ["id", "varchar", true],
+             ["selfRef", "varchar", true],
+             ["ts", "int8", true],
+             ["measRef", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["selfRef"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name":"experiment",
+        "db_schema": [
+             ["$schema", "varchar", true],
+             ["id", "varchar", true],
+             ["selfRef", "varchar", true],
+             ["ts", "int8", true],         
+             ["slice_urn", "varchar", true],
+             ["slice_uuid", "varchar", true],
+             ["source_aggregate_urn", "varchar", true],
+             ["source_aggregate_href", "varchar", true],
+             ["destination_aggregate_urn", "varchar", true],
+             ["destination_aggregate_href", "varchar", true]
+         ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["selfRef"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name":"opsconfig",
+        "db_schema": [
+             ["$schema", "varchar", true],
+             ["id", "varchar", true],
+             ["selfRef", "varchar", true],
+             ["ts", "int8", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["selfRef"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name":"aggregate_resource",
+        "db_schema" : [
+             ["id", "varchar", true],
+             ["aggregate_id", "varchar", true],
+             ["urn", "varchar", true],
+             ["selfRef", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s, %s)", ["id", "aggregate_id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name":"aggregate_sliver",
+        "db_schema" : [
+             ["id", "varchar", true],
+             ["aggregate_id", "varchar", true],
+             ["urn", "varchar", true],
+             ["selfRef", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s, %s)", ["id", "aggregate_id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["id", "ops_sliver", "id"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["aggregate_id", "ops_aggregate", "id"]]
+        ],
+        "dependencies" : ["ops_sliver", "ops_aggregate"]
+    },
+    {   "name":"link_relations",
+        "db_schema" : [
+             ["parent_id", "varchar", true],
+             ["child_id", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s, %s)", ["parent_id", "child_id"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["parent_id", "ops_link", "id"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["child_id", "ops_link", "id"]]
+        ],
+        "dependencies" : ["ops_link"]
+    },
+    {   "name":"link_interfacevlan",
+        "db_schema" : [
+             ["id", "varchar", true],
+             ["link_id", "varchar", true]
+         ],
+        "constraints": [
+            ["PRIMARY KEY (%s, %s)", ["id", "link_id"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["id", "ops_interfacevlan", "id"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["link_id", "ops_link", "id"]]
+        ],
+        "dependencies" : ["ops_interfacevlan", "ops_link"]
+    },
+    {   "name":"node_interface",
+        "db_schema": [
+             ["id", "varchar", true],
+             ["node_id", "varchar", true],
+             ["urn", "varchar", true],
+             ["selfRef", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s, %s)", ["id", "node_id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["id", "ops_interface", "id"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["node_id", "ops_node", "id"]]
+        ],
+        "dependencies" : ["ops_interface", "ops_node"]
+    },
+    {   "name":"slice_user",
+        "db_schema": [
+             ["id","varchar", true],
+             ["slice_id","varchar", true],
+             ["urn","varchar", true],
+             ["role","varchar", true],
+             ["selfRef","varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s, %s)", ["id", "slice_id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["id", "ops_user", "id"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["slice_id", "ops_slice", "id"]]
+        ],
+        "dependencies" : ["ops_user", "ops_slice"]
+    },
+    {   "name":"authority_user",
+        "db_schema": [
+             ["id", "varchar", true],
+             ["authority_id", "varchar", true],
+             ["urn", "varchar", true],
+             ["selfRef", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s, %s)", ["id", "authority_id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["id", "ops_user", "id"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["authority_id", "ops_authority", "id"]]
+        ],
+        "dependencies" : ["ops_user", "ops_authority"]
+    },
+    {   "name":"authority_slice",
+        "db_schema": [
+             ["id","varchar", true],
+             ["authority_id","varchar", true],
+             ["urn","varchar", true],
+             ["selfRef","varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s, %s)", ["id", "authority_id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["id", "ops_slice", "id"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["authority_id", "ops_authority", "id"]]
+        ],
+        "dependencies" : ["ops_slice", "ops_authority"]
+    },
+    {   "name":"opsconfig_aggregate",
+        "db_schema": [
+             ["id", "varchar", true],
+             ["opsconfig_id", "varchar", true],
+             ["amtype", "varchar", true],
+             ["urn", "varchar", true],
+             ["selfRef", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["opsconfig_id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name":"opsconfig_authority",
+        "db_schema": [
+             ["id","varchar", true],
+             ["opsconfig_id", "varchar", true],
+             ["urn", "varchar", true],
+             ["selfRef", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["opsconfig_id"]],
+            ["UNIQUE (%s)", ["selfRef"]],
+            ["UNIQUE (%s)", ["urn"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name":"opsconfig_event",
+        "db_schema": [
+             ["object_type", "varchar", true],
+             ["name", "varchar", true],
+             ["id", "varchar", true],
+             ["ts", "varchar", true],
+             ["v", "varchar", true],
+             ["units", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["object_type"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name":"externalcheck_experiment",
+        "db_schema": [
+             ["id", "varchar", true],
+             ["externalcheck_id", "varchar", true],
+             ["selfRef", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s)", ["id"]],
+            ["UNIQUE (%s)", ["externalcheck_id"]],
+            ["UNIQUE (%s)", ["selfRef"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name":"externalcheck_monitoredaggregate",
+        "db_schema": [
+             ["id", "varchar", true],
+             ["externalcheck_id", "varchar", true],
+             ["selfRef", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s, %s)", ["id", "externalcheck_id"]],
+            ["UNIQUE (%s)", ["selfRef"]]
+        ],
+        "dependencies" : []
+    },
+    {   "name":"interface_addresses",
+        "db_schema": [
+             ["interface_id", "varchar", true],
+             ["addrtype", "varchar", true],
+             ["scope", "varchar", false],
+             ["address", "varchar", true]
+        ],
+        "constraints": [
+            ["PRIMARY KEY (%s, %s)", ["interface_id", "address"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s)", ["interface_id", "ops_interface", "id"]]
+        ],
+        "dependencies" : ["ops_interface"]
+    }
+  ],
+  "events": 
+    {
+        "node": [
+            {   "name": "cpu_util",
+                "id": "varchar",
+                "ts": "int8",
+                "v": "float4",
+                "units": "percent"
+            },
+            {   "name": "mem_used_kb",
+                "id": "varchar",
+                "ts": "int8",
+                "v": "int8",
+                "units": "kilobytes"
+            },      
+            {   "name": "swap_free",
+                "id": "varchar",
+                "ts": "int8",
+                "v": "float4",
+                "units": "percent"
+            },
+            {   "name": "is_available",
+                "id": "varchar",
+                "ts": "int8",
+                "v": "int2",
+                "units": "boolean"
+            },
+            {   "name": "disk_part_max_used",
+                "id": "varchar",
+                "ts": "int8",
+                "v": "float4",
+                "units":"percent"
+            },
+            {   "name": "num_vms_allocated",
+                "id": "varchar",
+                "ts": "int8",
+                "v": "int4",
+                "units": "count"
+            }
+        ],
+        "aggregate": [
+            {   "name": "is_available",
+                "id": "varchar",
+                "ts": "int8",
+                "v": "int2",
+                "units": "boolean"
+            },
+            {   "name": "routable_ip_available",
+                "id": "varchar",
+                "ts": "int8",
+                "v": "int4",
+                "units": "count"
+           }
+        ],
+        "interface": [
+            {   "name": "rx_bps",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"bps"
+            },
+            {   "name": "tx_bps",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"bps"
+            },
+            {   "name":"rx_pps",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"pps"
+            },
+            {   "name":"tx_pps",  
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"pps"
+            },
+            {   "name":"rx_eps",  
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"pps"
+            },
+            {   "name":"tx_eps",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"pps"
+            },
+            {   "name":"rx_dps",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"pps"
+            },
+            {   "name":"tx_dps",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"pps"
+            },
+            {   "name":"tx_power",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"dBM"
+            },
+            {   "name":"tx_frequency",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"Mhz"
+            },
+            {   "name":"wmx_noc",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"int8",
+                "units":"number of clients"
+            }
+        ],
+        "interfacevlan": [
+            {   "name": "rx_bps",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"bps"
+            },
+            {   "name": "tx_bps",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"bps"
+            },
+            {   "name":"rx_pps",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"pps"
+            },
+            {   "name":"tx_pps",  
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"pps"
+            },
+            {   "name":"rx_eps",  
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"pps"
+            },
+            {   "name":"tx_eps",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"pps"
+            },
+            {   "name":"rx_dps",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"pps"
+            },
+            {   "name":"tx_dps",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"pps"
+            }
+        ],
+        "experiment": [
+            {   "name": "ping_rtt_ms",
+                "id": "varchar",
+                "ts": "int8",
+                "v":"float4",
+                "units":"milliseconds"
+            }
+        ]
+    }
+}

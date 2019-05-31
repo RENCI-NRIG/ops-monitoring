@@ -1,0 +1,41 @@
+This README describes some of the configuration files in this
+directory.
+
+collector_operator.conf: configuration settings for the database that
+runs on the collector host.
+
+config_datastore_operator.conf: appears to be unused.
+
+database_conf_loader.py: python module to parse the database
+configuration files in this directory.
+
+local_datastore_operator.conf: configuration settings for the database
+that runs on the local datastore host.
+
+logging.conf: configuration settings for the logging system.
+
+opsconfig.json.jwc: a multipurpose file that contains the list of
+aggregate stores, the database table schemas, and the event
+definitions for time-series data for aggregates, nodes, interfaces,
+interfacevlans, and experiments.
+
+whitelist.conf:
+
+This file contains a list of URNs identifying collectors that should
+be allowed to get data from local datastores.  These URNs originate
+from the collector tool certificate's Subject Alternative Name.  If a
+collector attempts to access data using a certificate whose URN is not
+on this list, the web server will refuse access.  See
+http://groups.geni.net/geni/wiki/OperationalMonitoring/DatastorePolling#Security
+for more information.
+
+Initially, GPO will maintain this list in our git repository, with a
+link to it at the above URL.  This list will contain all of the
+collectors to whom tool certificates have been issued.  Local
+datastore operators can update their local copies of the whitelist
+from this source at their discretion, e.g., a nightly cron job.  They
+can also have a completely independent whitelist to enable different
+local access policies.
+
+We will investigate maintenance and distribution of the whitelist via
+other channels, e.g., the config store database, in future releases.

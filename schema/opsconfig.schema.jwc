@@ -1,0 +1,209 @@
+// Local datastores send JSON data conforming to this schema in response
+// to this REST call:
+//    https://<datastore-host>/info/opsconfig/<aggregate id>
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140828/opsconfig#",
+  "description": "Operational monitoring data configuration",
+  "name": "opsconfig",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/domain#"
+  },
+  "properties": {
+    "aggregatestores": {
+      "description": "GENI aggregates known to support operational monitoring",
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "urn": {
+            "type": "string",
+            "required": true
+          },
+          "amtype": {
+            // XXX probably make this an enum.  What are the allowed amtypes?
+            "type": "string",
+            "required": true
+          },
+          "href": {
+            "type": "string",
+            "required": true
+          }
+        }
+      }
+    },
+    "externalcheckstores": {
+      "description": "References for GENI externela check datastores",
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "required": true
+          }
+        }
+      }
+    },
+    "authorities": {
+      "description": "GENI authorities known to support operational monitoring",
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "urn": {
+            "type": "string",
+            "required": true
+          },
+          "href": {
+            "type": "string",
+            "required": true
+          }
+        }
+      }
+    },
+   "info": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "required": true
+          },
+          "db_schema": {
+            "type": "array",
+            "required": true
+          }
+        }
+      }
+    },
+    "events": {
+      "type": "object",
+      "properties": {
+        "node": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "required": true
+              },
+              "id": {
+                "type": "string",
+                "required": true
+              },
+              "ts": {
+                "type": "string",
+                "required": true
+              },
+              "v": {
+                "type": "string",
+                "required": true
+              },
+              "units": {
+                "type": "string",
+                "required": true
+              }
+            }
+           }
+         },
+         "aggregate": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "required": true
+              },
+              "id": {
+                "type": "string",
+                "required": true
+              },
+              "ts": {
+                "type": "string",
+                "required": true
+              },
+              "v": {
+                "type": "string",
+                "required": true
+              },
+              "units": {
+                "type": "string",
+                "required": true
+              }
+            }
+          }
+        },
+         "experiment": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "required": true
+              },
+              "id": {
+                "type": "string",
+                "required": true
+              },
+              "ts": {
+                "type": "string",
+                "required": true
+              },
+              "v": {
+                "type": "string",
+                "required": true
+              },
+              "units": {
+                "type": "string",
+                "required": true
+              }
+            }
+          }
+        },
+        "interfacevlan": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "required": true
+              },
+              "id": {
+                "type": "string",
+                "required": true
+              },
+              "ts": {
+                "type": "string",
+                "required": true
+              },
+              "v": {
+                "type": "string",
+                "required": true
+              },
+              "units": {
+                "type": "string",
+                "required": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

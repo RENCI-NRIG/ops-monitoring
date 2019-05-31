@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140828/slice#",
+  "description": "GENI slice",
+  "name": "Slice",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "uuid": {
+      "description": "UUID for this slice - unique at the authority",
+      "type": "string",
+      "required": true
+    },
+    "authority": {
+      "description": "GENI slice authority which created this slice",
+      "type": "object",
+      "properties" : {
+        "urn": {
+          "type":"string",
+          "required": true
+        },
+        "href": {
+          "type":"string",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "created": {
+      "description": "Creation time: number of microseconds since Jan 1 1970 00:00:00 UTC",
+      "type": "integer",
+      "required": true
+    },
+    "expires": {
+      "description": "Expiration time: number of microseconds since Jan 1 1970 00:00:00 UTC",
+      "type": "integer",
+      "required": true
+    },
+    "members": {
+      "description": "List of GENI users who have privileges on the slice",
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "urn": {
+            "type":"string",
+            "required": true
+          },
+          "role": {
+            "type":"string",
+            "required": true
+          },
+          "href": {
+            "type":"string",
+            "required": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

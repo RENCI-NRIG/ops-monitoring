@@ -1,0 +1,44 @@
+{
+  "base_url": "http://localhost:8088/",
+  "checkprefs": { "nonzero_numbers": true },
+  "cases": [
+    [ "aggregate", "info/aggregate/gpo-ig",
+      {
+        "resources": { "VERIFY": { "minlength": 2 } },
+	"slivers": { "VERIFY": { "minlength": 2 } }
+      }
+    ],
+    [ "node", "info/node/instageni.gpolab.bbn.com_node_pc1", {} ],
+    [ "interface", "info/interface/instageni.gpolab.bbn.com_interface_pc1:eth1", {} ],
+    [ "slice", "info/slice/ch.geni.net_gpo-infra_slice_tuptyexclusive", {} ],
+    [ "sliver", "info/sliver/instageni.gpolab.bbn.com_sliver_26947", {} ],
+    [ "authority", "info/authority/ch.geni.net", {} ],
+    [ "user", "info/user/tupty", {} ],
+    [ "opsconfig", "info/opsconfig/geni-prod", {} ],
+    [ "link", "info/link/arbitrary_link_id_001", {} ],
+    [ "interfacevlan", "info/interfacevlan/instageni.gpolab.bbn.com_interface_pc2:eth1:1750", {} ]
+  ],
+  "data": {
+    "info/aggregate/gpo-ig": [
+      [ {
+          "eventType": [ "ops_monitoring:mem_used_kb", "ops_monitoring:cpu_util"],
+          "ts": { "lastmins": "1000000" },
+          "obj": { "type": "node", "id": ["instageni.gpolab.bbn.com_node_pc1"]}
+        },
+        { "VERIFY": { "minlength": 1 },
+          "tsdata": { "VERIFY": { "minlength": 1 }}
+        }
+      ],
+      [
+        {
+          "eventType": [ "ops_monitoring:rx_bps", "ops_monitoring:tx_bps"],
+          "ts": { "lastmins": "1000000" },
+          "obj": {"type": "interface", "id": ["instageni.gpolab.bbn.com_interface_pc1:eth1"]}
+        },
+        { "VERIFY": { "minlength": 1 },
+          "tsdata": { "VERIFY": { "minlength": 1 }}
+        }
+      ]
+    ]
+  }
+}

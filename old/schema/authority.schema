@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-03/hyper-schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140501/authority#",
+  "description": "GENI authority",
+  "name": "Authority",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "users": {
+      "description": "GENI users at this authority",
+      "type": "array",
+      "required": false,
+      "items": {
+        "type": "object",
+	"properties": {
+	   "urn": {"type":"string"},
+	   "href": {"type":"string"}
+        },
+	"required": ["urn","href"]
+      }
+    },
+    "slices": {
+      "description": "active slices at this authority",
+      "type": "array",
+      "required": false,
+      "items": {
+        "type": "object",
+	"properties": {
+	   "urn": {"type":"string"},
+	   "href": {"type":"string"}
+        },
+	"required": ["urn","href"]
+      }
+    }
+  }
+}

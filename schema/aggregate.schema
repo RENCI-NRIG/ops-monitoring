@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140828/aggregate#",
+  "description": "GENI aggregate",
+  "name": "Aggregate",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "measRef": {
+      "description":
+        "Location of measurement data about this aggregate and its resources",
+      "type": "string",
+      "required": true
+    },
+    "monitoring_version": {
+      "description": "monitoring software version",
+      "type": "string",
+      "required": true
+    },
+    "populator_version": {
+      "description": "database population software version",
+      "type": "string",
+      "required": false
+    },
+    "operational_status": {
+      "description": "fitness for use of the datastore",
+      "enum": [ "development", "production", "other" ],
+      "required": true
+    },
+    "routable_ip_poolsize" : {
+      "description": "Size of publicly routable IP address pool",
+      "type": "integer",
+      "required": false
+    },
+    "resources": {
+      "description": "resources controlled by this aggregate",
+      "type": "array",
+      "required": false,
+      "items": {
+        "type": "object",
+        "properties": {
+          "resource_type": {
+            "description": "Type of this resource",
+            "enum": ["node", "link"],
+            "required": true
+          },
+          "urn": {
+            "type":"string",
+            "required": true
+          },
+          "href": {
+            "type":"string",
+            "required": true
+          }
+        }
+      }
+    },
+    "slivers": {
+      "description": "active slivers at this aggregate",
+      "type": "array",
+      "required": false,
+      "items": {
+        "type": "object",
+        "properties": {
+          "urn": {
+            "type":"string",
+            "required": true
+          },
+          "href": {
+            "type":"string",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

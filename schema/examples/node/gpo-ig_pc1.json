@@ -1,0 +1,28 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140828/node#",
+  "id": "instageni.gpolab.bbn.com_node_pc1",
+  "ts": 1391192705275101,
+  "selfRef": "https://datastore.instageni.gpolab.bbn.com/nodes/instageni.gpolab.bbn.com_node_pc1",
+  "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+node+pc1",
+  "ops_monitoring:mem_total_kb": 50331648,
+  "node_type": "server",
+  "virtualization_type": "xen",
+  "interfaces": [
+    { 
+      "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+interface+pc1:eth0",
+      "href": "https://datastore.instageni.gpolab.bbn.com/info/interface/instageni.gpolab.bbn.com_interface_pc1%3Aeth0"
+    },
+    { 
+      "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+interface+pc1:eth1",
+      "href": "https://datastore.instageni.gpolab.bbn.com/info/interface/instageni.gpolab.bbn.com_interface_pc1%3Aeth1"
+    },
+    { 
+      "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+interface+pc1:eth2",
+      "href": "https://datastore.instageni.gpolab.bbn.com/info/interface/instageni.gpolab.bbn.com_interface_pc1%3Aeth2"
+    },
+    { 
+      "urn": "urn:publicid:IDN+instageni.gpolab.bbn.com+interface+pc1:eth3",
+      "href": "https://datastore.instageni.gpolab.bbn.com/info/interface/instageni.gpolab.bbn.com_interface_pc1%3Aeth3"
+    }
+  ]
+}

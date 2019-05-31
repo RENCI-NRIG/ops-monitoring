@@ -1,0 +1,13 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140828/user#",
+  "id": "tupty",
+  "selfRef": "https://datastore.ch.geni.net/info/user/tupty",
+  "urn": "https://datastore.ch.geni.net/info/user/tupty",
+  "ts": 1391192685740849,
+  "authority": {
+    "urn": "urn:publicid:IDN+ch.geni.net+authority+ch",
+    "href": "https://datastore.ch.geni.net/info/authority/ch.geni.net"
+  },
+  "fullname": "Tim Exampleuser",
+  "email": "tupty@example.com"
+}

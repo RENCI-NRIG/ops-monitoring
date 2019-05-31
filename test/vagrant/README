@@ -1,0 +1,117 @@
+This documentation describes how to use the testing infrastructure.
+
+The key components of the monitoring architecture are the collector
+and the local datastore. Both can be deployed to VMs by Virtualbox,
+Vagrant, and Puppet, enabling fast VM deployment/configuration.  The
+goal of this configuration is to make it easy to stand up a test
+version of new code, so we can do system-level regression tests
+without a lot of effort or error.
+
+You must install Vagrant and VirtualBox to use this testing infrastructure.
+Vagrant can be found here: https://www.vagrantup.com/downloads.html
+VirtualBox can be found here: https://www.virtualbox.org/wiki/Downloads
+The following version combinations are known to work:
+MacOS 10.7.5 + Vagrant 1.5.2 + VirtualBox 4.3.8
+
+To use the VMs:
+
+a. These instructions refer to the top level of your ops-monitoring
+repository working directory as ${TOP}.  You may wish to set the
+environment variable TOP as such so that you can use the commands
+below directly.
+
+b.  These instructions refer to the VM you are using, collector or
+local, as ${VM}.
+
+c. Commands that must be run on the VirtualBox host (the machine
+running VirtualBox, i.e., NOT a VM) are prefixed with "vboxhost$".
+
+d. Make sure you have a collector tools certificate.  Look for the
+phrase "tool certificate" in ${TOP}/collector/README for instructions
+on how to get one.  Below, we will use ${TOOLCERT} to denote the path
+to your certificate file.
+
+e. If you obtained the monitoring software by cloning our git repository,
+   you must build the software.  Do NOT do this is you are using a
+   release tarball; in that case, the build is already done.
+    vboxhost$ cd ${TOP}; make
+
+f. Optionally edit settings in
+${TOP}/test/vagrant/${VM}/manifests/init.pp as desired.  In the
+"default" node class in that file, set any variables you like to
+appropriate values for what you want to test.  We recommend keeping
+the default settings when first starting out.
+
+g. Bring up the VM.
+    vboxhost$ cd ${TOP}/test/vagrant/${VM}
+    vboxhost$ vagrant up
+
+Files in ${TOP}/test/vagrant/${VM} are automatically shared
+on the VM in the /vagrant directory, providing a convenient way to
+move files between vboxhost and ${VM}.
+
+h. Provision the VM.  This makes sure the latest build is installed on
+the VM, sets up database passwords, etc.
+    vboxhost$ vagrant provision
+
+i. See if you can log in to the VM.
+    vboxhost$ vagrant ssh
+
+j.  Continue with the instructions in ${TOP}/test/vagrant/${VM}/README.
+
+----------------------------------------------------------------------
+
+The directory structure down from ops-monitoring/test/vagrant/ is as
+follows:
+
+ * local/ - Contains the Vagrantfile and manifest/init.pp file for
+    deploying the local datastore VM
+
+ * collector/ - Same as above for deploying the collector VM
+
+ * ext-ck-store/ - Same as above for deploying the external check
+    datastore; however, the external check store configuration is
+    only partially completed.  
+
+ * config-store/ - Same as above for deploying config datastore.  As
+    configured this only responds to a single call for configuration
+    information.
+
+ * modules/ - Modules that are included as defined by the manifests
+    within each of the above configurations.  More info below.
+
+The modules/ directory contains Puppet modules.  A puppet module is a
+piece of configuration that is included by the configuration of the
+VM being deployed by Vagrant.  For instance, if MySQL is the
+included, the mysql module configures the VM for mysql, installs
+passwords, etc.
+
+The modules included are:
+
+ * apache - configures the local datastore to be exposed on port 443 (SSL)
+
+ * apt - execution of apt-get update before installing other modules
+
+ * curl - installs the curl package for testing the datastore
+
+ * collector - runs scripts for initializing the collector, namely
+    this establishes the database tables by running
+    ops-monitoring/collector/unit-tests/collector_table_reset.py.
+
+ * emacs - installs the emacs package
+
+ * flask - installs Python flask 
+
+ * local - runs scripts for initializing the local datastore.  As
+   currently configured in /test/vagrant/local/manifests/init.pp,
+   this runs the unit-test ops-monitoring/local/unit-tests/
+
+ * mysql
+ * postgresql
+ * psutil
+ * requests
+ * rsyslog
+ * sslapache
+
+
+

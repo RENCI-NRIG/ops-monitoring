@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140828/interfacevlan#",
+  "description": "subinterface representing a tagged VLAN on an interface",
+  "name": "interfacevlan",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "tag": {
+      "description": "numeric identifier of VLAN on the parent device",
+      "type": "integer",
+      "required": true
+    },
+    "interface": {
+      "description": "parent interface of which this VLAN is a subinterface",
+      "type": [
+        {
+          "urn": "string",
+          "href": "string"
+        }
+      ],
+      "required": true
+    }
+  }
+}

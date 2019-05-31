@@ -1,0 +1,34 @@
+Changes for Release 1.0  
+May 1, 2014
+-----------------------
+
+* SSL is used to enable local datastores to verify the identity of
+  collectors.  Collectors must present a valid tool certificate to
+  be allowed access.  See local/README for the required Apache2
+  configuration, collector/README for using tool certificates,
+  and config/README for configuring the whitelist of allowed
+  collectors.
+  
+* The database schemas are all read from config/opsconfig.json,
+  which is a dictionary containing this configuration.  See the
+  README at local/README point 6 for details of the schema.  The
+  only change to tables that existed prior to this release are the
+  measurement event tables.  The table names now are named 
+  "ops_<object_type>_<event_type>".  Before <object_type> did not
+  exist.
+
+* All selfRef and href entries into the database tables should be 
+  changed from http to https.
+
+* All $schema entries in the database for which json-schema to use
+  should point to:
+  http://www.gpolab.bbn.com/monitoring/schema/20140501/<obj_type>#
+  Notice the data change to 20140501 and that the base url starts
+  with gpolab instead of unis for all schemas.
+  
+
+Changes for Release snapshot-20140221 
+February 21, 2014
+-------------------------------------
+
+* Initial release of monitoring prototype.

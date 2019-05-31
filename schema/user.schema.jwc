@@ -1,0 +1,42 @@
+// Local datastores send JSON data conforming to this schema in response
+// to this REST call:
+//    https://<datastore-host>/info/user/<user object id>
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://www.gpolab.bbn.com/monitoring/schema/20140828/user#",
+  "description": "GENI user",
+  "name": "User",
+  "type": "object",
+  "additionalProperties": false,
+  "extends": {
+    "$ref": "http://unis.incntre.iu.edu/schema/20120709/networkresource#"
+  },
+  "properties": {
+    "authority": {
+        "description": "GENI authority at which this user is registered",
+        "type": "object",
+        "properties" : {
+          "urn": {
+            "type": "string",
+            "required": true
+          },
+          "href": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "additionalProperties": false
+    },
+    // Any aggregate that provides this information must use SSL!
+    "fullname": {
+      "description": "Name of this user",
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "description": "Email address of this user",
+      "type": "string",
+      "required": true
+    }
+  }
+}

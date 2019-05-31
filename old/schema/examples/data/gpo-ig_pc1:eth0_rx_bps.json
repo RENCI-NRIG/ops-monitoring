@@ -1,0 +1,16 @@
+{
+  "$schema": "http://www.gpolab.bbn.com/monitoring/schema/20140501/data#",
+  "id": "rx_bps:instageni.gpolab.bbn.com_interface_pc1:eth0",
+  "subject": "https://datastore.instageni.gpolab.bbn.com/ports/instageni.gpolab.bbn.com_interface_pc1:eth0",
+  "eventType": "ops_monitoring:rx_bps",
+  "description": "bytes per second received on this interface",
+  "units": "float",
+  "tsdata": [
+    { "ts": 1391198716651283, "v": 2453.64 },
+    { "ts": 1391198776651284, "v": 800.2 },
+    { "ts": 1391198836651284, "v": 2400.3 },
+    { "ts": 1391198896651284, "v": 1984.3 },
+    { "ts": 1391198956651284, "v": 0 },
+    { "ts": 1391199016651285, "v": 0 }
+  ]
+}

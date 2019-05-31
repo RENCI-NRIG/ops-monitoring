@@ -1,0 +1,22 @@
+To test the collector:
+
+a. Follow the instructions "To use the VMs:" in ../README.
+
+b. Commands that must be run on the collector VM are prefixed with
+"collector$".
+
+c. Follow the instructions in ../local/README to run the local datastore VM.
+
+d. Try fetching some monitoring info from the web server running on the VM.
+    collector$ curl -k --cert ${TOOLCERT} https://192.168.33.10/info/aggregate/gpo-ig
+    collector$ curl -k --cert ${TOOLCERT} https://192.168.33.10/info/node/instageni.gpolab.bbn.com_node_pc1
+
+e. Try fetching some monitoring info using rest_call.py:
+    collector$ cd /usr/local/ops-monitoring/collector
+    collector$ ./rest_call.py -c ${TOOLCERT} -i https://192.168.33.10/info/aggregate/gpo-ig
+
+f. Do a full crawl of the local datastore VM:
+    collector$ ./rest_call.py -c ${TOOLCERT} -f https://192.168.33.10/info/aggregate/gpo-ig
+
+  The last line of output should be something like this:
+  20 URLs visited , 20 valid

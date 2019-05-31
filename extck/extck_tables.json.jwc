@@ -1,0 +1,25 @@
+{
+  "tables": [
+    {  "name": "extck_aggregate",
+       "db_schema": [
+        ["aggregate_id", "varchar", true],
+        ["type", "varchar", true]
+       ],
+       "constraints": [
+            ["PRIMARY KEY (%s)", ["aggregate_id"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s) ON DELETE CASCADE ON UPDATE CASCADE", ["aggregate_id", "ops_aggregate", "id"]]
+       ]
+    },
+    {  "name": "extck_aggregate_amurl",
+       "db_schema": [
+        ["aggregate_id", "varchar", true],
+        ["amurl", "varchar", true]
+       ],
+       "constraints": [
+            ["PRIMARY KEY (%s, %s)", ["aggregate_id", "amurl"]],
+            ["UNIQUE (%s)", ["amurl"]],
+            ["FOREIGN KEY (%s) REFERENCES %s(%s) ON DELETE CASCADE ON UPDATE CASCADE", ["aggregate_id", "ops_aggregate", "id"]]
+       ]
+    }
+  ]
+}
