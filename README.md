@@ -89,3 +89,9 @@ The database table schema is listed in the file `config/opsconfig.json.jwc` and 
 ## Installation
 Puppet script installs rpm package `/usr/local/ops-monitoring` in the head node.
 ### Config
+#### Minimum data we need to feed to ops-monitoring:
+
+- ops_aggregate_resource
+- ops_aggregate_sliver
+- ops_node,ops_link
+- ops_sliver
